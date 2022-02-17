@@ -3,16 +3,20 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 
 function Remind() {
 
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
-    const [reminders, setReminders] = useState([]);
 
-    // if a reminder task is coming up, would be automatically added to the pinned items usestate 
+    // could have as regular function and call to get initial state
+    const [reminders, setReminders] = useState(() => {
+       const savedReminders = localStorage.getItem("reminders");
+       const initialValue = JSON.parse(savedReminders);
+       return initialValue || []; 
+    });
 
     const handleTask = (event) => {
         setRemTask(event.target.value);
@@ -24,20 +28,27 @@ function Remind() {
 
     const createReminder = (event) => {
         event.preventDefault();
-        setReminders(prevState => (
-            [...prevState, { 
-                task: remTask, 
-                dateTime: remDateTime
-            }]
-        ))
+        
+        setReminders(prevState => {
+            const dateString = JSON.stringify(remDateTime).replaceAll('"', "");
+            const newState = [...prevState, {task: remTask, dateTime: dateString}];
+            return newState;
+        })
     }
 
     useEffect(() => {
-        reminders.forEach(reminder => {
-            localStorage.setItem(`${reminder.task}`, JSON.stringify(reminder.dateTime))
+        localStorage.setItem("reminders", JSON.stringify(reminders))
+    }, [reminders]);
 
-        })
-    })
+    const editReminder = (targetReminder) => {
+        // render interface to set new reminder
+        // set reminders 
+    }
+
+    const deleteReminder = (targetReminder) => {
+        setReminders(reminders.filter(reminder => reminder !== targetReminder))
+        // filter items to remove the reminder and reset the state and stringify for local storage
+    }
 
     return (
         // header/footer with navbar
@@ -57,6 +68,7 @@ function Remind() {
                     <DateTimePicker
                         label="Date and Time picker"
                         name="dateTime"
+                        inputFormat="EEEE dd/MM/yyyy HH:mm"
                         value={remDateTime}
                         onChange={handleDateTime}
                         renderInput={(params) => <TextField {...params} />}
@@ -67,13 +79,18 @@ function Remind() {
             </section> 
             <section className="current-reminders">  
                 {/*ideally reminder box would be own component as well and wouldn't have index as key  */}
+
                 {reminders.map((reminder, idx) => 
+                
                     <div key={idx} className="reminder">
                         <h3>{reminder.task}</h3>
-                        <p>{format(reminder.dateTime, "HH:mm dd MMM yyyy")}</p>
+                        <p>
+                            {format(parseISO(reminder.dateTime), "HH:mm EEEE dd MMM yyyy")}
+                        </p>
+
                         {/* ideally would have some visual indicator of how near time is */}
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => editReminder(reminder)}>Edit</button>
+                        <button onClick={() => deleteReminder(reminder)}>Delete</button>
                     </div>
                 )}
             </section>

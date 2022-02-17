@@ -2,6 +2,8 @@
 import ReminderIcon from "./ReminderIcon"
 import NotesIcon from "./NotesIcon"
 
+import "./MainNav.css"
+
 function MainNav() {
 
     return (

@@ -1,0 +1,13 @@
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #51a3a3;
+}
+
+nav ul {
+    
+}
+
+
+/* media queries - if small screen, nav appears down bottom of page */
