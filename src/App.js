@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+// need react router dom to have routes to diff components
+
+import MainNav from './components/MainNav';
+import Pinboard from './components/Pinboard';
+
+import Remind from './components/Remind';
 
 function App() {
+
+  // need use state for pinned here, or elsewhere? 
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainNav />
+      {/* dashboard contacts button thingy for to do, alarm, etc */}
+      <Pinboard />
+      <Remind />
+      {/* pinned stuff goes here */}
+      {/* <Calendar /> */}
+      {/* ideally renders date, but clicking on it opens up full calendar interface */}
     </div>
   );
 }
