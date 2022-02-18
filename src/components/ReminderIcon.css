@@ -1,0 +1,17 @@
+
+.reminder-icon {
+    background-color: #e56339;
+    width: 100px;
+    height: 100px;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+.reminder-icon p {
+    margin: 0;
+}
+
+

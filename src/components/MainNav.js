@@ -1,6 +1,8 @@
 
 import ReminderIcon from "./ReminderIcon"
 import NotesIcon from "./NotesIcon"
+import { Link } from 'react-router-dom'
+
 
 import "./MainNav.css"
 
@@ -9,12 +11,16 @@ function MainNav() {
     return (
         <nav>
             <ul>
-                {/* all clickable icons for diff components */}
-                <li><ReminderIcon /></li>
-                {/* <ToDoIcon /> */}
-                <li><NotesIcon /></li>
-                {/* pros and cons icon */}
+                <li>
+                    <Link to="/reminders"><ReminderIcon /></Link>
+                </li>
+                <li>    
+                    <Link to=""><NotesIcon /></Link>
+                </li>
             </ul>
+            
+            {/* <ToDoIcon /> */}
+            {/* pros and cons icon */}
         </nav>
     )
 }

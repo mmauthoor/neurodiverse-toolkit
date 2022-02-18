@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Pinboard.css"
 
 function Pinboard() {
 
@@ -6,7 +7,11 @@ function Pinboard() {
 
     return (
         <section>
+            <div className="pinboard-container">
             notes notes notes
+
+
+            </div>
         </section>
     )
     

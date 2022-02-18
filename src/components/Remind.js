@@ -3,13 +3,20 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, getUnixTime } from 'date-fns';
+// import { TimeProvider } from "react-time-sync";
+// import TimeSync from "time-sync";
+
+import Timer from "./Timer";
+
 
 
 function Remind() {
 
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
+    const [now, setNow] = useState(Date.now());
+
 
     // could have as regular function and call to get initial state
     const [reminders, setReminders] = useState(() => {
@@ -17,6 +24,22 @@ function Remind() {
        const initialValue = JSON.parse(savedReminders);
        return initialValue || []; 
     });
+
+    useEffect(() => {
+        localStorage.setItem("reminders", JSON.stringify(reminders))
+    }, [reminders]);
+
+
+    // research this effect hook more 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNow(new Date())
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, []); 
+
+   
 
     const handleTask = (event) => {
         setRemTask(event.target.value);
@@ -36,10 +59,6 @@ function Remind() {
         })
     }
 
-    useEffect(() => {
-        localStorage.setItem("reminders", JSON.stringify(reminders))
-    }, [reminders]);
-
     const editReminder = (targetReminder) => {
         // render interface to set new reminder
         // set reminders 
@@ -47,7 +66,6 @@ function Remind() {
 
     const deleteReminder = (targetReminder) => {
         setReminders(reminders.filter(reminder => reminder !== targetReminder))
-        // filter items to remove the reminder and reset the state and stringify for local storage
     }
 
     return (
@@ -58,7 +76,6 @@ function Remind() {
             <section className="new-reminder-form">  
                 <h2>New reminder</h2>
                 <label htmlFor="">What's this reminder for?</label> 
-                {/* onchange would update reminder state name */}
                 <input 
                     onChange={handleTask} 
                     type="text" 
@@ -71,15 +88,16 @@ function Remind() {
                         inputFormat="EEEE dd/MM/yyyy HH:mm"
                         value={remDateTime}
                         onChange={handleDateTime}
+                        disablePast
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
 
                 <button onClick={createReminder}>Create reminder!</button>
             </section> 
+
             <section className="current-reminders">  
                 {/*ideally reminder box would be own component as well and wouldn't have index as key  */}
-
                 {reminders.map((reminder, idx) => 
                 
                     <div key={idx} className="reminder">
@@ -88,7 +106,7 @@ function Remind() {
                             {format(parseISO(reminder.dateTime), "HH:mm EEEE dd MMM yyyy")}
                         </p>
 
-                        {/* ideally would have some visual indicator of how near time is */}
+                        <Timer now={now} eventTime={reminder.dateTime}/>
                         <button onClick={() => editReminder(reminder)}>Edit</button>
                         <button onClick={() => deleteReminder(reminder)}>Delete</button>
                     </div>
@@ -96,9 +114,7 @@ function Remind() {
             </section>
         </>
 
-        // content area  includes view current reminders
-
     )
 }
 
-export default Remind
+export default Remind;

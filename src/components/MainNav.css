@@ -1,12 +1,24 @@
 
 nav {
     display: flex;
-    flex-direction: row;
     background-color: #51a3a3;
+    height: 8em;
 }
 
 nav ul {
-    
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+nav li {
+    list-style: none;
+    /* flex: 3; */
+}
+
+nav a {
+    text-decoration: none;
 }
 
 
