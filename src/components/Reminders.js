@@ -11,7 +11,7 @@ import Timer from "./Timer";
 
 
 
-function Remind() {
+function Reminder() {
 
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
@@ -117,4 +117,4 @@ function Remind() {
     )
 }
 
-export default Remind;
+export default Reminder;

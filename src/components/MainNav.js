@@ -15,7 +15,7 @@ function MainNav() {
                     <Link to="/reminders"><ReminderIcon /></Link>
                 </li>
                 <li>    
-                    <Link to=""><NotesIcon /></Link>
+                    <Link to="/notes"><NotesIcon /></Link>
                 </li>
             </ul>
             

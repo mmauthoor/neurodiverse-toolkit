@@ -2,7 +2,8 @@ import './App.css';
 import {Routes, Route, Link} from 'react-router-dom'
 
 import Home from './components/Home';
-import Remind from './components/Remind';
+import Reminders from './components/Reminders';
+import Notes from './components/Notes';
 
 function App() {
 
@@ -22,9 +23,11 @@ function App() {
           <Home />
         }/>
         <Route path="/reminders" element={
-          <Remind />
+          <Reminders />
         }/>
-
+        <Route path="/notes" element={
+          <Notes />
+        }/>
 
       
       </Routes>
