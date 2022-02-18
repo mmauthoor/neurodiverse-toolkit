@@ -1,14 +1,22 @@
 import { useState } from "react";
 import "./Pinboard.css"
 
-function Pinboard() {
+function Pinboard({ pinned }) {
 
-    const [pinnedItems, setPinnedItems] = useState([])
+    // const [pinnedItems, setPinnedItems] = useState([])
 
     return (
         <section>
             <div className="pinboard-container">
-            notes notes notes
+
+                { pinned.map(pinnedItem => {
+                    if (pinnedItem.title) {
+                        <div className="note">
+                            <h2>{pinnedItem.title}</h2>
+                            <p>{pinnedItem.content}</p>
+                        </div>
+                    } 
+                }) }
 
 
             </div>

@@ -1,20 +1,33 @@
 import { useState, useEffect } from "react";
 
 
-function Notes() {
+function Notes({ setPinned }) {
 
     const [noteTitle, setNoteTitle] = useState("");
     const [noteContent, setNoteContent] = useState("");
+    const [isPinned, setIsPinned] = useState(false);
     const [notes, setNotes] = useState(() => {
         const savedNotes = localStorage.getItem("notes");
         const initialValue = JSON.parse(savedNotes);
         return initialValue || [];
     });
+
+    // need to figure out how to autoclear inputs after button click
+    // how to pass pinned html to pinboard? stringify whole element and pass to pinboard for rendering?
     const [val, setVal] = useState();
 
 
     useEffect(() => {
-        localStorage.setItem("notes", JSON.stringify(notes))
+        localStorage.setItem("notes", JSON.stringify(notes));
+        // need to keep previous pinned state and include new pinned notes. Use reduce? 
+        // setPinned(prevState => {
+        //     // need to remove 
+        //     let pinnedNotes = notes.filter(note => note.pinned === true);
+        //     // const newState = [...prevState]
+        //     // return newState;
+        //     // notes.filter(note => note.pinned === true));
+
+        // }
     }, [notes]);
 
     const handleTitle = (event) => {
@@ -25,14 +38,18 @@ function Notes() {
         setNoteContent(event.target.value);
     }
 
+    const handlePinned = (event) => {
+        setIsPinned(event.target.checked);
+    }
+
     const createNote = (event) => {
         event.preventDefault();
         
         setNotes(prevState => {
-            const newState = [...prevState, {title: noteTitle, content: noteContent}];
+            const newState = [...prevState, {title: noteTitle, content: noteContent, pinned: isPinned}];
             return newState;
         })
-        setVal("");
+        // setVal("");
     }
 
     const editNote = (targetNote) => {
@@ -41,9 +58,9 @@ function Notes() {
     }
 
     const deleteNote = (targetNote) => {
-        setNotes(notes.filter(note => note !== targetNote))
+        setNotes(notes.filter(note => note !== targetNote));
+        setPinned(notes.filter(note => note !== targetNote));
     }
-
 
     return (
         <>
@@ -54,18 +71,23 @@ function Notes() {
                     onChange={handleTitle} 
                     type="text" 
                     name="title" 
-                    value={val}
+                    // value={val}
                 />
                 <label htmlFor="">Content</label>
                 <textarea 
                     name="content" 
                     onChange={handleContent}
-                    value={val}
+                    // value={val}
                     id="" 
                     cols="30" 
                     rows="10">
                 </textarea>
-
+                <input 
+                    type="checkbox" 
+                    onChange={handlePinned}
+                    name="pinned"
+                    value="note"/>
+                <label htmlFor="pinned">Pin this note?</label>
                 <button onClick={createNote}>Create note!</button>
             </section> 
 
@@ -75,9 +97,7 @@ function Notes() {
                 
                     <div key={idx} className="note">
                         <h3>{note.title}</h3>
-                        <p>
-                            {note.content}
-                        </p>
+                        <p>{note.content}</p>
 
                         <button onClick={() => editNote(note)}>Edit</button>
                         <button onClick={() => deleteNote(note)}>Delete</button>

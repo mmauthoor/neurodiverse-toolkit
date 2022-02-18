@@ -1,12 +1,12 @@
 import MainNav from "./MainNav";
 import Pinboard from "./Pinboard";
 
-function Home() {
+function Home({ pinned }) {
 
     return (
         <>
             <MainNav />
-            <Pinboard />
+            <Pinboard pinned={pinned}/>
         </>  
 
     )
