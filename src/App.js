@@ -8,8 +8,11 @@ import Notes from './components/Notes';
 
 function App() {
 
-  // need use state for pinned here, or elsewhere? 
-  const [pinned, setPinned] = useState([]);
+  const [pinnedNotes, setPinnedNotes] = useState(() => {
+    const savedPins = localStorage.getItem("pinnedNotes");
+    const initialValue = JSON.parse(savedPins);
+    return initialValue || [];
+  });
 
 
   return (
@@ -22,13 +25,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={
-          <Home pinned={pinned}/>
+          <Home pinnedNotes={pinnedNotes}/>
         }/>
         <Route path="/reminders" element={
           <Reminders />
         }/>
         <Route path="/notes" element={
-          <Notes setPinned={setPinned}/>
+          <Notes setPinned={setPinnedNotes}/>
         }/>
 
       

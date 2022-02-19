@@ -1,12 +1,16 @@
+import { useState } from "react";
+
 import MainNav from "./MainNav";
 import Pinboard from "./Pinboard";
 
-function Home({ pinned }) {
+function Home({ pinnedNotes }) {
+
+    console.log(pinnedNotes)
 
     return (
         <>
             <MainNav />
-            <Pinboard pinned={pinned}/>
+            <Pinboard pinnedNotes={pinnedNotes}/>
         </>  
 
     )

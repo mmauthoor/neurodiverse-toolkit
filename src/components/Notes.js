@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-function Notes({ setPinned }) {
+function Notes() {
 
     const [noteTitle, setNoteTitle] = useState("");
     const [noteContent, setNoteContent] = useState("");
@@ -13,21 +13,17 @@ function Notes({ setPinned }) {
     });
 
     // need to figure out how to autoclear inputs after button click
+    
     // how to pass pinned html to pinboard? stringify whole element and pass to pinboard for rendering?
     const [val, setVal] = useState();
 
-
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
-        // need to keep previous pinned state and include new pinned notes. Use reduce? 
-        // setPinned(prevState => {
-        //     // need to remove 
-        //     let pinnedNotes = notes.filter(note => note.pinned === true);
-        //     // const newState = [...prevState]
-        //     // return newState;
-        //     // notes.filter(note => note.pinned === true));
 
-        // }
+        // is there a way to do this through state rather than directly changing local storage? 
+        let pinnedNotes = JSON.stringify(notes.filter(note => note.pinned === true));
+        localStorage.setItem("pinnedNotes", pinnedNotes);
+     
     }, [notes]);
 
     const handleTitle = (event) => {
@@ -59,7 +55,6 @@ function Notes({ setPinned }) {
 
     const deleteNote = (targetNote) => {
         setNotes(notes.filter(note => note !== targetNote));
-        setPinned(notes.filter(note => note !== targetNote));
     }
 
     return (
@@ -95,7 +90,7 @@ function Notes({ setPinned }) {
                 {/*ideally note box would be own component as well and wouldn't have index as key  */}
                 {notes.map((note, idx) => 
                 
-                    <div key={idx} className="note">
+                    <div key={idx} className="notes">
                         <h3>{note.title}</h3>
                         <p>{note.content}</p>
 
