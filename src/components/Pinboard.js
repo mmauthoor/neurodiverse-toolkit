@@ -21,6 +21,14 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
 
     const [now, setNow] = useState(Date.now());
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNow(new Date())
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, []);
+
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -32,6 +40,22 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
     useEffect(() => {
         localStorage.setItem("pinnedNotes", JSON.stringify(pinnedNotes));
     }, [pinnedNotes])
+
+    useEffect(() => {
+        reminders.forEach(reminder => {
+            let timeFromEvent = getUnixTime(parseISO(reminder.dateTime)) - getUnixTime(now)
+        
+            if (timeFromEvent <= reminder.timeSpanFromSetting * 0.1 && reminder.pinned === false) {
+
+                let newRems = reminders.map(rem => 
+                    rem.id === reminder.id 
+                    ? {...rem, pinned: true} 
+                    : rem
+                )
+                setReminders(newRems);
+            }
+        })
+    }, [now])
 
     useEffect(() => {
         localStorage.setItem("reminders", JSON.stringify(reminders));
@@ -46,19 +70,19 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
 
 
     const handleNoteUnpin = (targetNote) => {
-        let newNotes = notes.map(item => 
-            item.content === targetNote.content 
-            ? {...item, pinned: false} 
-            : item 
+        let newNotes = notes.map(note => 
+            note.id === targetNote.id 
+            ? {...note, pinned: false} 
+            : note 
         )
         setNotes(newNotes);
     }
 
     const handleRemUnpin = (targetRem) => {
-        let newRems = reminders.map(item => 
-            item.task === targetRem.task 
-            ? {...item, pinned: false} 
-            : item
+        let newRems = reminders.map(rem => 
+            rem.id === targetRem.id 
+            ? {...rem, pinned: false} 
+            : rem
         )
         setReminders(newRems);
     }

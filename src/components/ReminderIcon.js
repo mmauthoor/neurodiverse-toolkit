@@ -13,7 +13,7 @@ export default function ReminderIcon() {
     return (
         <div className="reminder-icon">
             
-            <FontAwesomeIcon icon="fa-duotone fa-alarm-clock" />
+            {/* <FontAwesomeIcon icon="fa-duotone fa-alarm-clock" /> */}
             {/* <FontAwesomeIcon icon={faAlarmClock} />  */}
             <FontAwesomeIcon icon={faScrewdriverWrench} />
             <p>Remind</p>

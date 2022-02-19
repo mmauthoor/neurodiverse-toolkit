@@ -4,6 +4,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { format, parseISO, getUnixTime } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
+
 
 import Timer from "./Timer";
 
@@ -13,7 +15,6 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
     const [now, setNow] = useState(Date.now());
-
     const [isPinned, setIsPinned] = useState(false);
 
     // could have as regular function and call to get initial state
@@ -43,7 +44,7 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
         }, 1000)
 
         return () => clearInterval(interval)
-    }, []); 
+    }, []);
 
    
     const handleTask = (event) => {
@@ -59,7 +60,16 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
         
         setReminders(prevState => {
             const dateString = JSON.stringify(remDateTime).replaceAll('"', "");
-            const newState = [...prevState, {task: remTask, dateTime: dateString, pinned: isPinned}];
+
+            const timeExpanse = getUnixTime(remDateTime) - getUnixTime(new Date());
+
+            const newState = [...prevState, {
+                task: remTask, 
+                dateTime: dateString, 
+                id: uuidv4(),
+                pinned: isPinned,
+                timeSpanFromSetting: timeExpanse
+            }];
             return newState;
         })
     }
@@ -75,6 +85,16 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
 
     const handlePinned = (event) => {
         setIsPinned(event.target.checked);
+    }
+
+    // currently not doing anything until we have pin button for pre-existing reminders
+    const handlePinReminder = (targetReminder) => {
+            let newRems = reminders.map(rem => 
+                rem.id === targetReminder.id 
+                ? {...rem, pinned: true} 
+                : rem
+            )
+            setReminders(newRems);
     }
 
     return (
@@ -113,9 +133,9 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
 
             <section className="current-reminders">  
                 {/*ideally reminder box would be own component as well and wouldn't have index as key  */}
-                {reminders.map((reminder, idx) => 
+                {reminders.map((reminder) => 
                 
-                    <div key={idx} className="reminder">
+                    <div key={reminder.id} className="reminder">
                         <h3>{reminder.task}</h3>
                         <p>
                             {format(parseISO(reminder.dateTime), "h:mm bbbb")}

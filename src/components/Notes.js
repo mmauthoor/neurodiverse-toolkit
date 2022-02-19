@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 
 function Notes( {pinnedNotes, setPinnedNotes} ) {
@@ -52,7 +53,7 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
             const newState = [...prevState, {
                 title: noteTitle, 
                 content: noteContent, 
-                id: notes.length + 1,
+                id: uuidv4(),
                 pinned: isPinned}];
             return newState;
         })
@@ -176,9 +177,9 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
 
             <section className="current-notes">  
                 {/*ideally note box would be own component as well and wouldn't have index as key  */}
-                {notes.map((note, idx) => 
+                {notes.map(note => 
                 
-                    <div key={idx} className="notes">
+                    <div key={note.id} className="notes">
                         <h3>{note.title}</h3>
                         <p>{note.content}</p>
 

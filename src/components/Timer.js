@@ -21,15 +21,14 @@ function Timer({ now, eventTime }) {
   
     useEffect(() => {
         const interval = setInterval(() => {
-
-            if (unixEndTime < getUnixTime(new Date())) {
-                setTimeDiff("Time's up!")
-            } else {
-                setTimeDiff(intervalToDuration({
-                    start: new Date(),
-                    end: new Date(eventTime)
-                }))
-            }
+                if (unixEndTime < unixNowTime) {
+                    setTimeDiff("Time's up!")
+                } else {
+                    setTimeDiff(intervalToDuration({
+                        start: new Date(),
+                        end: new Date(eventTime)
+                    }))
+                }
            
         }, 1000)
         return () => clearInterval(interval)
@@ -40,9 +39,9 @@ function Timer({ now, eventTime }) {
         <>
 
             <p>
-                {timeDiff === "Time's up!" 
-                    ? timeDiff 
-                    : `${formatDuration(timeDiff, {delimiter: ', '})} to go`
+                {unixEndTime < unixNowTime
+                    ? "Time's up!" 
+                    : `${formatDuration(timeDiff, {delimiter: ', '})}`
                 }
             </p>
         
