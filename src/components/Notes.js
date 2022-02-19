@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-function Notes() {
+function Notes( {pinnedNotes, setPinnedNotes} ) {
 
     const [noteTitle, setNoteTitle] = useState("");
     const [noteContent, setNoteContent] = useState("");
@@ -13,18 +13,20 @@ function Notes() {
     });
 
     // need to figure out how to autoclear inputs after button click
-    
-    // how to pass pinned html to pinboard? stringify whole element and pass to pinboard for rendering?
+
     const [val, setVal] = useState();
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
 
-        // is there a way to do this through state rather than directly changing local storage? 
-        let pinnedNotes = JSON.stringify(notes.filter(note => note.pinned === true));
-        localStorage.setItem("pinnedNotes", pinnedNotes);
+        let pinnedNotes = notes.filter(note => note.pinned === true);
+        setPinnedNotes(pinnedNotes);
      
     }, [notes]);
+
+    useEffect(() => {
+        localStorage.setItem("pinnedNotes", JSON.stringify(pinnedNotes));
+    }, [pinnedNotes])
 
     const handleTitle = (event) => {
         setNoteTitle(event.target.value);

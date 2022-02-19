@@ -25,13 +25,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={
-          <Home pinnedNotes={pinnedNotes}/>
+          <Home pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
         }/>
         <Route path="/reminders" element={
           <Reminders />
         }/>
         <Route path="/notes" element={
-          <Notes setPinned={setPinnedNotes}/>
+          <Notes pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
         }/>
 
       
