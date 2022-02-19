@@ -1,14 +1,26 @@
 import { useState, useEffect } from "react";
+import { format, parseISO, getUnixTime } from 'date-fns';
+
 
 import "./Pinboard.css"
+import Timer from "./Timer";
 
-function Pinboard({ pinnedNotes, setPinnedNotes }) {
+function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
 
     const [notes, setNotes] = useState(() => {
         const savedNotes = localStorage.getItem("notes");
         const initialValue = JSON.parse(savedNotes);
         return initialValue || [];
     });
+
+    const [reminders, setReminders] = useState(() => {
+        const savedReminders = localStorage.getItem("reminders");
+        const initialValue = JSON.parse(savedReminders);
+        return initialValue || []; 
+    });
+
+    const [now, setNow] = useState(Date.now());
+
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -21,6 +33,18 @@ function Pinboard({ pinnedNotes, setPinnedNotes }) {
         localStorage.setItem("pinnedNotes", JSON.stringify(pinnedNotes));
     }, [pinnedNotes])
 
+    // useEffect(() => {
+    //     localStorage.setItem("reminders", JSON.stringify(reminders));
+
+    //     let pinnedReminders = reminders.filter(rem => rem.pinned === true);
+    //     setPinnedReminders(pinnedReminders);
+    // })
+
+    // useEffect(() => {
+    //     localStorage.setItem("pinnedReminders", JSON.stringify(pinnedReminders));
+    // }, [pinnedReminders])
+
+
     const handleNoteUnpin = (note) => {
         
         let newNotes = notes.map(item => 
@@ -31,6 +55,10 @@ function Pinboard({ pinnedNotes, setPinnedNotes }) {
         setNotes(newNotes);
     }
 
+    const handleRemUnpin = (rem) => {
+
+    }
+
     return (
         <section>
             <div className="pinboard-container">
@@ -38,9 +66,24 @@ function Pinboard({ pinnedNotes, setPinnedNotes }) {
                     { pinnedNotes.map((note, idx) => 
                     
                         <div key={idx} className="notes">
-                            <h2>{note.title}</h2>
+                            <h3>{note.title}</h3>
                             <p>{note.content}</p>
                             <button onClick={() => handleNoteUnpin(note)}>Unpin</button>
+                        </div>
+                    )}
+                </div>
+
+                <div className="pinned-reminders">
+                    { pinnedReminders.map((reminder, idx) => 
+                        <div key={idx} className="reminders">
+                            <h3>{reminder.task}</h3>
+                            <p>
+                                {format(parseISO(reminder.dateTime), "HH:mm EEEE dd MMM yyyy")}
+                            </p>
+                            
+                            <Timer now={now} eventTime={reminder.dateTime}/>
+                            <button onClick={() => handleRemUnpin(reminder)}>Unpin</button>
+                            
                         </div>
                     )}
                 </div>
@@ -52,3 +95,4 @@ function Pinboard({ pinnedNotes, setPinnedNotes }) {
 }
 
 export default Pinboard
+

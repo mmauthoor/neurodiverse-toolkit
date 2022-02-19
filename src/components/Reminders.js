@@ -4,19 +4,17 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { format, parseISO, getUnixTime } from 'date-fns';
-// import { TimeProvider } from "react-time-sync";
-// import TimeSync from "time-sync";
 
 import Timer from "./Timer";
 
 
-
-function Reminder() {
+function Reminder({ pinnedReminders, setPinnedReminders }) {
 
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
     const [now, setNow] = useState(Date.now());
 
+    const [isPinned, setIsPinned] = useState(false);
 
     // could have as regular function and call to get initial state
     const [reminders, setReminders] = useState(() => {
@@ -24,10 +22,18 @@ function Reminder() {
        const initialValue = JSON.parse(savedReminders);
        return initialValue || []; 
     });
+     
+    useEffect(() => {
+        localStorage.setItem("reminders", JSON.stringify(reminders));
+
+        let pinnedReminders = reminders.filter(rem => rem.pinned === true);
+        setPinnedReminders(pinnedReminders);
+
+    }, [reminders]);
 
     useEffect(() => {
-        localStorage.setItem("reminders", JSON.stringify(reminders))
-    }, [reminders]);
+        localStorage.setItem("pinnedReminders", JSON.stringify(pinnedReminders));
+    }, [pinnedReminders])
 
 
     // research this effect hook more 
@@ -40,7 +46,6 @@ function Reminder() {
     }, []); 
 
    
-
     const handleTask = (event) => {
         setRemTask(event.target.value);
     }
@@ -54,7 +59,7 @@ function Reminder() {
         
         setReminders(prevState => {
             const dateString = JSON.stringify(remDateTime).replaceAll('"', "");
-            const newState = [...prevState, {task: remTask, dateTime: dateString}];
+            const newState = [...prevState, {task: remTask, dateTime: dateString, pinned: isPinned}];
             return newState;
         })
     }
@@ -66,6 +71,10 @@ function Reminder() {
 
     const deleteReminder = (targetReminder) => {
         setReminders(reminders.filter(reminder => reminder !== targetReminder))
+    }
+
+    const handlePinned = (event) => {
+        setIsPinned(event.target.checked);
     }
 
     return (
@@ -92,7 +101,13 @@ function Reminder() {
                         renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
-
+                <input 
+                    type="checkbox" 
+                    onChange={handlePinned}
+                    name="pinned"
+                    value="reminder"
+                />
+                <label htmlFor="pinned">Pin this reminder?</label>
                 <button onClick={createReminder}>Create reminder!</button>
             </section> 
 

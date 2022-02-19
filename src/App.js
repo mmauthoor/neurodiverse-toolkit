@@ -14,6 +14,12 @@ function App() {
     return initialValue || [];
   });
 
+  const [pinnedReminders, setPinnedReminders] = useState(() => {
+    const savedRems = localStorage.getItem("pinnedReminders");
+    const initialValue = JSON.parse(savedRems);
+    return initialValue || [];
+  })
+
 
   return (
     <div className="App">
@@ -25,10 +31,15 @@ function App() {
 
       <Routes>
         <Route path="/" element={
-          <Home pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
+          <Home 
+            pinnedNotes={pinnedNotes} 
+            setPinnedNotes={setPinnedNotes}
+            pinnedReminders={pinnedReminders} 
+            setPinnedReminders={setPinnedReminders}
+          />
         }/>
         <Route path="/reminders" element={
-          <Reminders />
+          <Reminders pinnedReminders={pinnedReminders} setPinnedReminders={setPinnedReminders}/>
         }/>
         <Route path="/notes" element={
           <Notes pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>

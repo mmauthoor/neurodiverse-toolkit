@@ -14,7 +14,9 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
 
     // need to figure out how to autoclear inputs after button click
 
-    const [val, setVal] = useState();
+    // const [val1, setVal1] = useState();
+    // const [val2, setVal2] = useState();
+
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -47,7 +49,9 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
             const newState = [...prevState, {title: noteTitle, content: noteContent, pinned: isPinned}];
             return newState;
         })
-        // setVal("");
+        // setVal1("");
+        // setVal2("");
+
     }
 
     const editNote = (targetNote) => {
@@ -68,13 +72,13 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
                     onChange={handleTitle} 
                     type="text" 
                     name="title" 
-                    // value={val}
+                    // value={val1}
                 />
                 <label htmlFor="">Content</label>
                 <textarea 
                     name="content" 
                     onChange={handleContent}
-                    // value={val}
+                    // value={val2}
                     id="" 
                     cols="30" 
                     rows="10">
@@ -83,7 +87,8 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
                     type="checkbox" 
                     onChange={handlePinned}
                     name="pinned"
-                    value="note"/>
+                    value="note"
+                />
                 <label htmlFor="pinned">Pin this note?</label>
                 <button onClick={createNote}>Create note!</button>
             </section> 
