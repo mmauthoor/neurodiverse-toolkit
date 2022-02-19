@@ -12,6 +12,9 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
         return initialValue || [];
     });
 
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentNote, setCurrentNote] = useState({});
+
     // need to figure out how to autoclear inputs after button click
 
     // const [val1, setVal1] = useState();
@@ -42,11 +45,15 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
         setIsPinned(event.target.checked);
     }
 
-    const createNote = (event) => {
+    const handleCreateNote = (event) => {
         event.preventDefault();
         
         setNotes(prevState => {
-            const newState = [...prevState, {title: noteTitle, content: noteContent, pinned: isPinned}];
+            const newState = [...prevState, {
+                title: noteTitle, 
+                content: noteContent, 
+                id: notes.length + 1,
+                pinned: isPinned}];
             return newState;
         })
         // setVal1("");
@@ -54,18 +61,92 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
 
     }
 
-    const editNote = (targetNote) => {
-        // render interface to set new reminder
-        // set reminders 
+    const handleEditNote = (targetNote) => {
+        setIsEditing(true);
+        setCurrentNote(targetNote); 
     }
 
-    const deleteNote = (targetNote) => {
+    const handleEditNoteSubmit = (event) => {
+        event.preventDefault();
+
+        const updatedNotes = notes.map(note => note.id === currentNote.id ? currentNote : note);
+        setIsEditing(false);
+        setNotes(updatedNotes);
+    }
+
+    const handleEditTitle = (event) => {
+        setCurrentNote({...currentNote, title: event.target.value});
+    }
+
+    const handleEditContent = (event) => {
+        setCurrentNote({...currentNote, content: event.target.value});
+    }
+
+
+    const handleDeleteNote = (targetNote) => {
         setNotes(notes.filter(note => note !== targetNote));
     }
 
     return (
         <>
-            <section className="new-note-form">  
+            { isEditing ? 
+                <form className="edit-note-form">
+                    <h2>Edit note</h2>
+                    <label htmlFor="editTitle">Edit title: </label>
+                
+                    <input
+                        name="editTitle"
+                        type="text"
+                        defaultValue={currentNote.title}
+                        onChange={handleEditTitle}
+                    />
+
+                    <label htmlFor="editContent">Edit content: </label>
+                <textarea
+                    name="editContent"
+                    type="text"
+                    defaultValue={currentNote.content}
+                    onChange={handleEditContent}
+                >
+                    </textarea>
+
+                    <button onClick={handleEditNoteSubmit}>Update</button>
+                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                </form>
+
+            : 
+
+                <form className="new-note-form">  
+                    <h2>New note</h2>
+                    <label htmlFor="">Note title</label> 
+                    <input 
+                        onChange={handleTitle} 
+                        type="text" 
+                        name="title" 
+                        // value={val1}
+                    />
+                    <label htmlFor="">Content</label>
+                    <textarea 
+                        name="content" 
+                        onChange={handleContent}
+                        // value={val2}
+                        id="" 
+                        cols="30" 
+                        rows="10">
+                    </textarea>
+                    <input 
+                        type="checkbox" 
+                        onChange={handlePinned}
+                        name="pinned"
+                        value="note"
+                    />
+                    <label htmlFor="pinned">Pin this note?</label>
+                    <button onClick={handleCreateNote}>Create note!</button>
+                </form>    
+        
+
+            }
+            {/* <section className="new-note-form">  
                 <h2>New note</h2>
                 <label htmlFor="">Note title</label> 
                 <input 
@@ -90,8 +171,8 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
                     value="note"
                 />
                 <label htmlFor="pinned">Pin this note?</label>
-                <button onClick={createNote}>Create note!</button>
-            </section> 
+                <button onClick={handleCreateNote}>Create note!</button>
+            </section>  */}
 
             <section className="current-notes">  
                 {/*ideally note box would be own component as well and wouldn't have index as key  */}
@@ -101,8 +182,8 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
                         <h3>{note.title}</h3>
                         <p>{note.content}</p>
 
-                        <button onClick={() => editNote(note)}>Edit</button>
-                        <button onClick={() => deleteNote(note)}>Delete</button>
+                        <button onClick={() => handleEditNote(note)}>Edit</button>
+                        <button onClick={() => handleDeleteNote(note)}>Delete</button>
                     </div>
                 )}
             </section>

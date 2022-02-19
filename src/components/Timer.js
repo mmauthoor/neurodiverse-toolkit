@@ -42,7 +42,7 @@ function Timer({ now, eventTime }) {
             <p>
                 {timeDiff === "Time's up!" 
                     ? timeDiff 
-                    : formatDuration(timeDiff, {delimiter: ', '})
+                    : `${formatDuration(timeDiff, {delimiter: ', '})} to go`
                 }
             </p>
         

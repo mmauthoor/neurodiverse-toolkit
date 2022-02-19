@@ -82,7 +82,10 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                         <div key={idx} className="reminders">
                             <h3>{reminder.task}</h3>
                             <p>
-                                {format(parseISO(reminder.dateTime), "HH:mm EEEE dd MMM yyyy")}
+                                {format(parseISO(reminder.dateTime), "h:mm bbbb")}
+                            </p>
+                            <p>
+                                {format(parseISO(reminder.dateTime), "EEEE dd MMMM yyyy")} 
                             </p>
                             
                             <Timer now={now} eventTime={reminder.dateTime}/>
@@ -98,5 +101,5 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
     
 }
 
-export default Pinboard
+export default Pinboard;
 
