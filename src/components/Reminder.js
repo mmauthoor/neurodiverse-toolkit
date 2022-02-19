@@ -5,7 +5,7 @@ function Reminder( { reminder, now } ) {
 
     return (
 
-        <div key={reminder.id} className="reminders">
+        <div className="reminders">
             <h3>{reminder.task}</h3>
             <p>
                 {format(parseISO(reminder.dateTime), "h:mm bbbb")}

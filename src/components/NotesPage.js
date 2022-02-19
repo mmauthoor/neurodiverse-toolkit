@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
+import Note from "./Note";
+
 
 function NotesPage( {pinnedNotes, setPinnedNotes} ) {
 
@@ -144,47 +146,15 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                     <label htmlFor="pinned">Pin this note?</label>
                     <button onClick={handleCreateNote}>Create note!</button>
                 </form>    
-        
-
             }
-            {/* <section className="new-note-form">  
-                <h2>New note</h2>
-                <label htmlFor="">Note title</label> 
-                <input 
-                    onChange={handleTitle} 
-                    type="text" 
-                    name="title" 
-                    // value={val1}
-                />
-                <label htmlFor="">Content</label>
-                <textarea 
-                    name="content" 
-                    onChange={handleContent}
-                    // value={val2}
-                    id="" 
-                    cols="30" 
-                    rows="10">
-                </textarea>
-                <input 
-                    type="checkbox" 
-                    onChange={handlePinned}
-                    name="pinned"
-                    value="note"
-                />
-                <label htmlFor="pinned">Pin this note?</label>
-                <button onClick={handleCreateNote}>Create note!</button>
-            </section>  */}
 
             <section className="current-notes">  
-                {/*ideally note box would be own component as well and wouldn't have index as key  */}
-                {notes.map(note => 
-                
-                    <div key={note.id} className="notes">
-                        <h3>{note.title}</h3>
-                        <p>{note.content}</p>
+                {notes.map(noteObj => 
 
-                        <button onClick={() => handleEditNote(note)}>Edit</button>
-                        <button onClick={() => handleDeleteNote(note)}>Delete</button>
+                    <div key={noteObj.id}>
+                        <Note note={noteObj}/>
+                        <button onClick={() => handleEditNote(noteObj)}>Edit</button>
+                        <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
                     </div>
                 )}
             </section>

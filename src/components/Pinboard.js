@@ -3,6 +3,7 @@ import { format, parseISO, getUnixTime } from 'date-fns';
 
 
 import "./Pinboard.css"
+import Note from "./Note";
 import Reminder from "./Reminder";
 
 function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
@@ -91,22 +92,20 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         <section>
             <div className="pinboard-container">
                 <div className="pinned-notes">
-                    { pinnedNotes.map(note => 
-                    
-                        <div key={note.id} className="notes">
-                            <h3>{note.title}</h3>
-                            <p>{note.content}</p>
-                            <button onClick={() => handleNoteUnpin(note)}>Unpin</button>
+                    { pinnedNotes.map(pinnedNoteObj => 
+                        <div key={pinnedNoteObj.id}>
+                            <Note note={pinnedNoteObj}/>
+                            <button onClick={() => handleNoteUnpin(pinnedNoteObj)}>Unpin</button>
                         </div>
                     )}
                 </div>
 
                 <div className="pinned-reminders">
                     { pinnedReminders.map(pinnedRemObj => 
-                        <>
+                        <div key={pinnedRemObj.id}>
                             <Reminder reminder={pinnedRemObj} now={now}/>
                             <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
-                        </>
+                        </div>
                     )}
                 </div>
 

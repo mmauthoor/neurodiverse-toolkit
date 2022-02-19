@@ -7,7 +7,6 @@ import { format, parseISO, getUnixTime } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
 import Reminder from "./Reminder";
-import Timer from "./Timer";
 
 
 function ReminderPage({ pinnedReminders, setPinnedReminders }) {
@@ -60,7 +59,6 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
         
         setReminders(prevState => {
             const dateString = JSON.stringify(remDateTime).replaceAll('"', "");
-
             const timeExpanse = getUnixTime(remDateTime) - getUnixTime(new Date());
 
             const newState = [...prevState, {
