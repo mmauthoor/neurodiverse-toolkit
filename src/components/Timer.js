@@ -3,10 +3,11 @@ import { intervalToDuration } from 'date-fns/esm';
 import { useState, useEffect } from "react";
 
 
-// issues to deal with: timers that go down to 0. need to stop somehow - e.g. change timer state.
 // check that stays in sync when moving between diff pages
 
 function Timer({ now, eventTime }) {
+
+    // maybe setting original now here instead of in reminder will allow clock to be more accurate? 
 
     const unixEndTime = getUnixTime(parseISO(eventTime));
     const unixNowTime = getUnixTime(now);
@@ -20,36 +21,30 @@ function Timer({ now, eventTime }) {
   
     useEffect(() => {
         const interval = setInterval(() => {
-            setTimeDiff(intervalToDuration({
-                start: new Date(),
-                end: new Date(eventTime)
-            }))
+
+            if (unixEndTime < getUnixTime(new Date())) {
+                setTimeDiff("Time's up!")
+            } else {
+                setTimeDiff(intervalToDuration({
+                    start: new Date(),
+                    end: new Date(eventTime)
+                }))
+            }
            
         }, 1000)
         return () => clearInterval(interval)
     }, [])
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         if (unixEndTime !== getUnixTime(new Date())) {
-    //             setTimeDiff(intervalToDuration({
-    //                 start: new Date(),
-    //                 end: new Date(eventTime)
-    //             }))
-    //         } else { 
-    //             setTimeDiff("Time's up")
-    //         }
-           
-    //     }, 1000)
-    //     return () => clearInterval(interval)
-    // }, [])
-   
+  
   
     return (
         <>
-        {/* conditional abou whether or not unix time has passed.  */}
 
-            <p>{formatDuration(timeDiff, {delimiter: ', '})}</p>
+            <p>
+                {timeDiff === "Time's up!" 
+                    ? timeDiff 
+                    : formatDuration(timeDiff, {delimiter: ', '})
+                }
+            </p>
         
         </>
     )
