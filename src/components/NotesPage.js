@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 
-function Notes( {pinnedNotes, setPinnedNotes} ) {
+function NotesPage( {pinnedNotes, setPinnedNotes} ) {
 
     const [noteTitle, setNoteTitle] = useState("");
     const [noteContent, setNoteContent] = useState("");
@@ -192,7 +192,7 @@ function Notes( {pinnedNotes, setPinnedNotes} ) {
     )
 }
 
-export default Notes;
+export default NotesPage;
 
 
 

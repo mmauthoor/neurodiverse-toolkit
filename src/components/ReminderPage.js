@@ -6,11 +6,11 @@ import TextField from '@mui/material/TextField';
 import { format, parseISO, getUnixTime } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
-
+import Reminder from "./Reminder";
 import Timer from "./Timer";
 
 
-function Reminder({ pinnedReminders, setPinnedReminders }) {
+function ReminderPage({ pinnedReminders, setPinnedReminders }) {
 
     const [remTask, setRemTask] = useState("");
     const [remDateTime, setRemDateTime] = useState(new Date());
@@ -132,22 +132,12 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
             </section> 
 
             <section className="current-reminders">  
-                {/*ideally reminder box would be own component as well and wouldn't have index as key  */}
-                {reminders.map((reminder) => 
-                
-                    <div key={reminder.id} className="reminder">
-                        <h3>{reminder.task}</h3>
-                        <p>
-                            {format(parseISO(reminder.dateTime), "h:mm bbbb")}
-                        </p>
-                        <p>
-                            {format(parseISO(reminder.dateTime), "EEEE dd MMMM yyyy")}
-                        </p>
-
-                        <Timer now={now} eventTime={reminder.dateTime}/>
-                        <button onClick={() => editReminder(reminder)}>Edit</button>
-                        <button onClick={() => deleteReminder(reminder)}>Delete</button>
-                    </div>
+                {reminders.map(reminderObj => 
+                    <>
+                        <Reminder reminder={reminderObj} now={now}/>
+                        <button onClick={() => editReminder(reminderObj)}>Edit</button>
+                        <button onClick={() => deleteReminder(reminderObj)}>Delete</button>                   
+                    </>
                 )}
             </section>
         </>
@@ -155,4 +145,4 @@ function Reminder({ pinnedReminders, setPinnedReminders }) {
     )
 }
 
-export default Reminder;
+export default ReminderPage;

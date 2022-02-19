@@ -3,8 +3,8 @@ import { useState } from "react";
 import {Routes, Route, Link} from 'react-router-dom';
 
 import Home from './components/Home';
-import Reminders from './components/Reminders';
-import Notes from './components/Notes';
+import ReminderPage from './components/ReminderPage';
+import NotesPage from './components/NotesPage';
 
 function App() {
 
@@ -39,10 +39,10 @@ function App() {
           />
         }/>
         <Route path="/reminders" element={
-          <Reminders pinnedReminders={pinnedReminders} setPinnedReminders={setPinnedReminders}/>
+          <ReminderPage pinnedReminders={pinnedReminders} setPinnedReminders={setPinnedReminders}/>
         }/>
         <Route path="/notes" element={
-          <Notes pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
+          <NotesPage pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
         }/>
 
       

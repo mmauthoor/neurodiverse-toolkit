@@ -3,7 +3,7 @@ import { format, parseISO, getUnixTime } from 'date-fns';
 
 
 import "./Pinboard.css"
-import Timer from "./Timer";
+import Reminder from "./Reminder";
 
 function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
 
@@ -91,9 +91,9 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         <section>
             <div className="pinboard-container">
                 <div className="pinned-notes">
-                    { pinnedNotes.map((note, idx) => 
+                    { pinnedNotes.map(note => 
                     
-                        <div key={idx} className="notes">
+                        <div key={note.id} className="notes">
                             <h3>{note.title}</h3>
                             <p>{note.content}</p>
                             <button onClick={() => handleNoteUnpin(note)}>Unpin</button>
@@ -102,20 +102,11 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                 </div>
 
                 <div className="pinned-reminders">
-                    { pinnedReminders.map((reminder, idx) => 
-                        <div key={idx} className="reminders">
-                            <h3>{reminder.task}</h3>
-                            <p>
-                                {format(parseISO(reminder.dateTime), "h:mm bbbb")}
-                            </p>
-                            <p>
-                                {format(parseISO(reminder.dateTime), "EEEE dd MMMM yyyy")} 
-                            </p>
-                            
-                            <Timer now={now} eventTime={reminder.dateTime}/>
-                            <button onClick={() => handleRemUnpin(reminder)}>Unpin</button>
-                            
-                        </div>
+                    { pinnedReminders.map(pinnedRemObj => 
+                        <>
+                            <Reminder reminder={pinnedRemObj} now={now}/>
+                            <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
+                        </>
                     )}
                 </div>
 
