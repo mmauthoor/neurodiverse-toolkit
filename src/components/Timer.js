@@ -1,4 +1,4 @@
-import { getUnixTime, parseISO } from 'date-fns';
+import { getUnixTime, parseISO, formatDuration } from 'date-fns';
 import { intervalToDuration } from 'date-fns/esm';
 import { useState, useEffect } from "react";
 
@@ -48,7 +48,8 @@ function Timer({ now, eventTime }) {
     return (
         <>
         {/* conditional abou whether or not unix time has passed.  */}
-            <p> {timeDiff.months} months, {timeDiff.days} days, {timeDiff.hours} hours, {timeDiff.minutes} minutes, and {timeDiff.seconds} seconds to go  </p>
+
+            <p>{formatDuration(timeDiff, {delimiter: ', '})}</p>
         
         </>
     )
