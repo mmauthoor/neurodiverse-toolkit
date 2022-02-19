@@ -33,30 +33,34 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         localStorage.setItem("pinnedNotes", JSON.stringify(pinnedNotes));
     }, [pinnedNotes])
 
-    // useEffect(() => {
-    //     localStorage.setItem("reminders", JSON.stringify(reminders));
+    useEffect(() => {
+        localStorage.setItem("reminders", JSON.stringify(reminders));
 
-    //     let pinnedReminders = reminders.filter(rem => rem.pinned === true);
-    //     setPinnedReminders(pinnedReminders);
-    // })
+        let pinnedReminders = reminders.filter(rem => rem.pinned === true);
+        setPinnedReminders(pinnedReminders);
+    }, [reminders])
 
-    // useEffect(() => {
-    //     localStorage.setItem("pinnedReminders", JSON.stringify(pinnedReminders));
-    // }, [pinnedReminders])
+    useEffect(() => {
+        localStorage.setItem("pinnedReminders", JSON.stringify(pinnedReminders));
+    }, [pinnedReminders])
 
 
-    const handleNoteUnpin = (note) => {
-        
+    const handleNoteUnpin = (targetNote) => {
         let newNotes = notes.map(item => 
-            item.content === note.content 
+            item.content === targetNote.content 
             ? {...item, pinned: false} 
             : item 
         )
         setNotes(newNotes);
     }
 
-    const handleRemUnpin = (rem) => {
-
+    const handleRemUnpin = (targetRem) => {
+        let newRems = reminders.map(item => 
+            item.task === targetRem.task 
+            ? {...item, pinned: false} 
+            : item
+        )
+        setReminders(newRems);
     }
 
     return (
