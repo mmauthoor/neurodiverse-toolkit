@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import HomeIcon from './HomeIcon';
 import ReminderIcon from './ReminderIcon';
 import ToDoIcon from './ToDoIcon';
 import ProsConsIcon from './ProsConsIcon';
@@ -19,7 +20,7 @@ function SubNav({ name, compStyle }) {
                 <ul>
                     {/* put home icon instead */}
                     <li>
-                        <Link to="/"><ReminderIcon text={"none"}/></Link>
+                        <Link to="/"><HomeIcon text={"none"}/></Link>
                     </li>
                     <li>
                         <Link to="/reminders"><ReminderIcon text={"none"}/></Link>

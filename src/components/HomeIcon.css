@@ -1,0 +1,9 @@
+.home-icon {
+    background-color: #22517e;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.home-icon h2  {
+    font-size: 0.9em;
+}

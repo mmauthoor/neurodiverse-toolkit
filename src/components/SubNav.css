@@ -6,17 +6,16 @@
     padding: 0;
 }
 
-.sub-nav ul {
+.nav-options ul {
     display: flex;
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0;
+    margin: 10px;
 }
 
-nav li {
-    list-style: none;
-    /* flex: 3; */
+.nav-options li {
+    margin: 8px;
 }
 
 .nav-options .icon {
@@ -26,7 +25,6 @@ nav li {
     border-radius: 50%;
     text-align: center;
     font-size: 1.5em;
-    /* position: relative; */
     flex: 1;
     margin: 0 auto;
 }
@@ -42,9 +40,6 @@ nav li {
 
 .reminder-nav {
     background-color: #e56399;
-    padding-left: 10em;
-    flex: 1;
-
 }
 
 .todo-nav {
@@ -57,6 +52,10 @@ nav li {
 
 .notes-nav {
     background-color: #a1a9fe;
+}
+
+.reminder-nav, .todo-nav, .proscons-nav, .notes-nav {
+    padding-left: 10em;
 }
 
 .reminder-nav h1, .todo-nav h1, .proscons-nav h1, .notes-nav h1 {
