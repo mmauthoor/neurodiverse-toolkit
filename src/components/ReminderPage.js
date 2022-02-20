@@ -5,6 +5,8 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { format, parseISO, getUnixTime } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
+import { MdModeEdit } from 'react-icons/md';
+import { AiFillDelete } from 'react-icons/ai';
 
 import SubNav from "./SubNav";
 import Reminder from "./Reminder";
@@ -108,9 +110,9 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
                     <h2>Current reminders</h2>  
                     {reminders.map(reminderObj => 
                         <div key={reminderObj.id} className="single-reminder-container">
+                            <button className="edit-btn" onClick={() => editReminder(reminderObj)}><MdModeEdit /></button>
                             <Reminder reminder={reminderObj} now={now}/>
-                            <button onClick={() => editReminder(reminderObj)}>Edit</button>
-                            <button onClick={() => deleteReminder(reminderObj)}>Delete</button>                   
+                            <button className="delete-btn" onClick={() => deleteReminder(reminderObj)}><AiFillDelete /></button>                   
                         </div>
                     )}
                 </section>

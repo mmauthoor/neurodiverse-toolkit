@@ -110,7 +110,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                         ?
                             <>
                                 { pinnedReminders.map(pinnedRemObj => 
-                                    <div key={pinnedRemObj.id}>
+                                    <div key={pinnedRemObj.id} className="single-reminder-container">
                                         <Reminder reminder={pinnedRemObj} now={now}/>
                                         <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
                                     </div>
