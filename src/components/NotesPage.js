@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
+import SubNav from "./SubNav";
 import Note from "./Note";
+import Footer from "./Footer";
+import "./NotesPage.css"
 
 
 function NotesPage( {pinnedNotes, setPinnedNotes} ) {
@@ -92,73 +95,76 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
 
     return (
         <>
-        {/* header nav thingy */}
-            { isEditing ? 
-                <form className="edit-note-form">
-                    <h2>Edit note</h2>
-                    <label htmlFor="editTitle">Edit title: </label>
-                
-                    <input
-                        name="editTitle"
+            <SubNav name={"Notes"} compStyle={"notes-nav"} />
+            <div className="notes-container">  
+                { isEditing ? 
+                    <form className="edit-note-form">
+                        <h2>Edit note</h2>
+                        <label htmlFor="editTitle">Edit title: </label>
+                    
+                        <input
+                            name="editTitle"
+                            type="text"
+                            defaultValue={currentNote.title}
+                            onChange={handleEditTitle}
+                        />
+
+                        <label htmlFor="editContent">Edit content: </label>
+                    <textarea
+                        name="editContent"
                         type="text"
-                        defaultValue={currentNote.title}
-                        onChange={handleEditTitle}
-                    />
+                        defaultValue={currentNote.content}
+                        onChange={handleEditContent}
+                    >
+                        </textarea>
 
-                    <label htmlFor="editContent">Edit content: </label>
-                <textarea
-                    name="editContent"
-                    type="text"
-                    defaultValue={currentNote.content}
-                    onChange={handleEditContent}
-                >
-                    </textarea>
+                        <button onClick={handleEditNoteSubmit}>Update</button>
+                        <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    </form>
 
-                    <button onClick={handleEditNoteSubmit}>Update</button>
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
-                </form>
+                : 
 
-            : 
+                    <form className="new-note-form">  
+                        <h2>New note</h2>
+                        <label htmlFor="">Note title</label> 
+                        <input 
+                            onChange={handleTitle} 
+                            type="text" 
+                            name="title" 
+                            // value={val1}
+                        />
+                        <label htmlFor="">Content</label>
+                        <textarea 
+                            name="content" 
+                            onChange={handleContent}
+                            // value={val2}
+                            id="" 
+                            cols="30" 
+                            rows="10">
+                        </textarea>
+                        <input 
+                            type="checkbox" 
+                            onChange={handlePinned}
+                            name="pinned"
+                            value="note"
+                        />
+                        <label htmlFor="pinned">Pin this note?</label>
+                        <button onClick={handleCreateNote}>Create note!</button>
+                    </form>    
+                }
 
-                <form className="new-note-form">  
-                    <h2>New note</h2>
-                    <label htmlFor="">Note title</label> 
-                    <input 
-                        onChange={handleTitle} 
-                        type="text" 
-                        name="title" 
-                        // value={val1}
-                    />
-                    <label htmlFor="">Content</label>
-                    <textarea 
-                        name="content" 
-                        onChange={handleContent}
-                        // value={val2}
-                        id="" 
-                        cols="30" 
-                        rows="10">
-                    </textarea>
-                    <input 
-                        type="checkbox" 
-                        onChange={handlePinned}
-                        name="pinned"
-                        value="note"
-                    />
-                    <label htmlFor="pinned">Pin this note?</label>
-                    <button onClick={handleCreateNote}>Create note!</button>
-                </form>    
-            }
+                <section className="current-notes">  
+                    {notes.map(noteObj => 
 
-            <section className="current-notes">  
-                {notes.map(noteObj => 
-
-                    <div key={noteObj.id}>
-                        <Note note={noteObj}/>
-                        <button onClick={() => handleEditNote(noteObj)}>Edit</button>
-                        <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
-                    </div>
-                )}
-            </section>
+                        <div key={noteObj.id}>
+                            <Note note={noteObj}/>
+                            <button onClick={() => handleEditNote(noteObj)}>Edit</button>
+                            <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
+                        </div>
+                    )}
+                </section>
+            </div>
+            <Footer />
         </>
     )
 }

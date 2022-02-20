@@ -91,7 +91,10 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
     return (
         <section>
             <div className="pinboard-container">
-                <div className="pinned-notes">
+                <div className="todo-list content">
+                    todolist here
+                </div>
+                <div className="pinned-notes content">
                     { pinnedNotes.map(pinnedNoteObj => 
                         <div key={pinnedNoteObj.id}>
                             <Note note={pinnedNoteObj}/>
@@ -99,8 +102,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                         </div>
                     )}
                 </div>
-
-                <div className="pinned-reminders">
+                <div className="pinned-reminders content">
                     { pinnedReminders.map(pinnedRemObj => 
                         <div key={pinnedRemObj.id}>
                             <Reminder reminder={pinnedRemObj} now={now}/>

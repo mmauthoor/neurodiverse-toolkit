@@ -1,0 +1,67 @@
+.sub-nav {
+    display: flex;
+    height: 10em;
+    padding-right: 0;
+    align-items: center;
+    padding: 0;
+}
+
+.sub-nav ul {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+nav li {
+    list-style: none;
+    /* flex: 3; */
+}
+
+.nav-options .icon {
+    /* need more responsive width and height */
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.5em;
+    /* position: relative; */
+    flex: 1;
+    margin: 0 auto;
+}
+
+.page-name {
+    flex: 3;
+}
+
+.nav-options {
+    background-color: #51a3a3;
+    padding: 8px;
+}
+
+.reminder-nav {
+    background-color: #e56399;
+    padding-left: 10em;
+    flex: 1;
+
+}
+
+.todo-nav {
+    background-color: #de6e4b;
+}
+
+.proscons-nav {
+    background-color: #7fd1b9;
+}
+
+.notes-nav {
+    background-color: #a1a9fe;
+}
+
+.reminder-nav h1, .todo-nav h1, .proscons-nav h1, .notes-nav h1 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    line-height: 2;
+}

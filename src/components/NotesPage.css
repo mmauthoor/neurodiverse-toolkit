@@ -1,5 +1,5 @@
 
-.pinboard-container {
+.notes-container {
     padding: 5rem 6rem;
     background-color: #e1eeed;
     display: flex;
@@ -7,16 +7,5 @@
     height: 75vh;
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.content {
-    padding: 1%;
-    flex: 1;
-}
-
-@media (max-width: 700px) {
-    .pinboard-container {
-        flex-direction: column;
-    }
+    /* flex-wrap: wrap; */
 }

@@ -5,13 +5,12 @@ import ProsConsIcon from "./ProsConsIcon";
 import NotesIcon from "./NotesIcon";
 import { Link } from 'react-router-dom';
 
-
 import "./MainNav.css"
 
 function MainNav() {
 
     return (
-        <nav>
+        <nav className="main-nav">
             <ul>
                 <li>
                     <Link to="/reminders"><ReminderIcon /></Link>
@@ -26,9 +25,6 @@ function MainNav() {
                     <Link to="/notes"><NotesIcon /></Link>
                 </li>
             </ul>
-            
-            {/* <ToDoIcon /> */}
-            {/* pros and cons icon */}
         </nav>
     )
 }

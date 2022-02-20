@@ -4,13 +4,19 @@ import { FcAlarmClock } from 'react-icons/fc';
 
 
 
-export default function ReminderIcon() {
+export default function ReminderIcon( {text} ) {
 
     return (
         <div className="reminder-icon icon">
-    
-            <FcAlarmClock />
-            <h2>Remind</h2>
+            {text === "none" 
+                ? 
+                    <FcAlarmClock /> 
+                : 
+                <>
+                    <FcAlarmClock />
+                    <h2>Remind</h2>
+                </>
+            } 
         </div>
     )
 }
