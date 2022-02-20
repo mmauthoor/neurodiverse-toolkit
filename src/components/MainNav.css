@@ -2,7 +2,9 @@
 nav {
     display: flex;
     background-color: #51a3a3;
-    height: 8em;
+    height: 10em;
+    padding: 0 15%;
+    align-items: center;
 }
 
 nav ul {
@@ -10,6 +12,7 @@ nav ul {
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
+
 }
 
 nav li {
@@ -21,5 +24,45 @@ nav a {
     text-decoration: none;
 }
 
+.icon {
+    width: 5em;
+    height: 5em;
+    /* line-height: 2em; */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.5em;
+    position: relative;
+    /* padding: 2px; */
+}
+
+.icon h2  {
+    margin: 0;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    bottom: 25%;
+    width: 100%;
+}
+
+svg {
+    font-size: 3rem;
+    margin-top: 0.9rem;
+}
+
+img {
+    margin-top: 0.9rem;
+    width: 3rem;
+}
+
+.icon:hover {
+    background-color: #7371FC;
+    transform: scale(1.1) perspective(1px)
+}
+
+.icon:active {
+    transform: translate(0px, 2px);
+    -webkit-transform: translate(0px, 2px);
+    box-shadow: 0px 1px 0px 0px;
+}
 
 /* media queries - if small screen, nav appears down bottom of page */

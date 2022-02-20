@@ -5,6 +5,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import Home from './components/Home';
 import ReminderPage from './components/ReminderPage';
 import NotesPage from './components/NotesPage';
+import ToDoPage from './components/ToDoPage';
 
 function App() {
 
@@ -40,6 +41,9 @@ function App() {
         }/>
         <Route path="/reminders" element={
           <ReminderPage pinnedReminders={pinnedReminders} setPinnedReminders={setPinnedReminders}/>
+        }/>
+        <Route path="/todo" element={
+          <ToDoPage />
         }/>
         <Route path="/notes" element={
           <NotesPage pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>

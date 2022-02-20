@@ -1,14 +1,11 @@
 
-.reminder-icon {
-    background-color: #e56399;
+.notes-icon {
+    background-color: #a1a9fe;
     transition: all 0.3s ease;
     transform: scale(1);
 }
 
-.reminder-icon h2  {
+.notes-icon h2  {
     font-size: 0.9em;
 }
-
-
-
 

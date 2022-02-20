@@ -131,11 +131,11 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
 
             <section className="current-reminders">  
                 {reminders.map(reminderObj => 
-                    <>
+                    <div key={reminderObj.id}>
                         <Reminder reminder={reminderObj} now={now}/>
                         <button onClick={() => editReminder(reminderObj)}>Edit</button>
                         <button onClick={() => deleteReminder(reminderObj)}>Delete</button>                   
-                    </>
+                    </div>
                 )}
             </section>
         </>

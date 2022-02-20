@@ -1,14 +1,10 @@
 
-.reminder-icon {
-    background-color: #e56399;
+.todo-icon {
+    background-color: #de6e4b;
     transition: all 0.3s ease;
     transform: scale(1);
 }
 
-.reminder-icon h2  {
+.todo-icon h2  {
     font-size: 0.9em;
 }
-
-
-
-

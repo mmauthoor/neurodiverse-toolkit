@@ -1,0 +1,10 @@
+
+.proscons-icon {
+    background-color: #7fd1b9;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.proscons-icon h2 {
+    font-size: 0.7em;
+}

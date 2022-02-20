@@ -92,6 +92,7 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
 
     return (
         <>
+        {/* header nav thingy */}
             { isEditing ? 
                 <form className="edit-note-form">
                     <h2>Edit note</h2>
