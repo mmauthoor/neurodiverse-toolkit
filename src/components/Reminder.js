@@ -1,11 +1,12 @@
 import { format, parseISO } from 'date-fns';
 import Timer from './Timer';
+import "./Reminder.css"
 
 function Reminder( { reminder, now } ) {
 
     return (
 
-        <div className="reminders">
+        <div className="reminder-content">
             <h3>{reminder.task}</h3>
             <p>
                 {format(parseISO(reminder.dateTime), "h:mm bbbb")}

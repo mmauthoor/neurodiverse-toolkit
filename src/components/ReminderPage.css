@@ -1,11 +1,97 @@
 
 .reminder-container {
-    padding: 5rem 6rem;
+    padding: 3rem 10em;
     background-color: #e1eeed;
     display: flex;
-    /* need better way of doing height */
-    height: 75vh;
+    min-height: 75vh;
     flex-direction: row;
     justify-content: space-between;
     /* flex-wrap: wrap; */
+}
+
+.current-reminders, .new-reminder-form {
+    flex: 1;
+}
+
+.new-reminder-form {
+    background-color: #fff;
+    padding: 0 2em 3em;
+    text-align: center;
+    align-self: flex-start;
+}
+
+input {
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    line-height: 3.5;
+    width: 50%;
+    display: block;
+    margin: 1.5em auto;
+}
+
+/* .pin-checkbox-container {
+    align-self: center;
+} */
+
+.checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1.5em;
+}
+
+.reminder-container {
+    line-height: 1.5;
+    flex: wrap;
+    gap: 8%;
+}
+
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root  {
+    display: block;
+    width: 80%;
+}
+
+button {
+    margin: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;
+    background-color: #51a3a3;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    padding: 10px;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+button:hover {
+    background-color: #22517e;
+    transform: scale(1.1) perspective(1px)
+}
+
+.single-reminder-container {
+    margin: 1em 0 ;
+}
+
+.current-reminders {
+    padding: 0 2em;
+    width: 70%;
+
+}
+
+.reminder-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    line-height: 2;
+}
+
+
+@media (max-width: 800px) {
+    .reminder-container {
+        flex-direction: column;
+        padding: 2rem 3rem;
+    }
+    .new-reminder-form {
+        align-self: stretch;
+    }
 }

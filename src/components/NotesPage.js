@@ -97,6 +97,18 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
         <>
             <SubNav name={"Notes"} compStyle={"notes-nav"} />
             <div className="notes-container">  
+
+                <section className="current-notes">  
+                    {notes.map(noteObj => 
+
+                        <div key={noteObj.id}>
+                            <Note note={noteObj}/>
+                            <button onClick={() => handleEditNote(noteObj)}>Edit</button>
+                            <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
+                        </div>
+                    )}
+                </section>
+
                 { isEditing ? 
                     <form className="edit-note-form">
                         <h2>Edit note</h2>
@@ -152,17 +164,6 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                         <button onClick={handleCreateNote}>Create note!</button>
                     </form>    
                 }
-
-                <section className="current-notes">  
-                    {notes.map(noteObj => 
-
-                        <div key={noteObj.id}>
-                            <Note note={noteObj}/>
-                            <button onClick={() => handleEditNote(noteObj)}>Edit</button>
-                            <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
-                        </div>
-                    )}
-                </section>
             </div>
             <Footer />
         </>

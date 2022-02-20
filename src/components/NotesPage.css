@@ -1,10 +1,10 @@
 
 .notes-container {
-    padding: 5rem 6rem;
+    padding: 3rem 10em;
     background-color: #e1eeed;
     display: flex;
     /* need better way of doing height */
-    height: 75vh;
+    min-height: 75vh;
     flex-direction: row;
     justify-content: space-between;
     /* flex-wrap: wrap; */

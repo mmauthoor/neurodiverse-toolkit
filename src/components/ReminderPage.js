@@ -103,43 +103,49 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
             <SubNav name={"Reminders"} compStyle={"reminder-nav"} />
             <div className="reminder-container">  
             {/* ideally make these components themselves */}
-                <section className="new-reminder-form">  
-                    <h2>New reminder</h2>
-                    <label htmlFor="">What's this reminder for?</label> 
-                    <input 
-                        onChange={handleTask} 
-                        type="text" 
-                        name="task" 
-                    />
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
-                            label="Date and Time picker"
-                            name="dateTime"
-                            inputFormat="EEEE dd/MM/yyyy HH:mm"
-                            value={remDateTime}
-                            onChange={handleDateTime}
-                            disablePast
-                            renderInput={(params) => <TextField {...params} />}
-                        />
-                    </LocalizationProvider>
-                    <input 
-                        type="checkbox" 
-                        onChange={handlePinned}
-                        name="pinned"
-                        value="reminder"
-                    />
-                    <label htmlFor="pinned">Pin this reminder?</label>
-                    <button onClick={createReminder}>Create reminder!</button>
-                </section> 
 
-                <section className="current-reminders">  
+                <section className="current-reminders">
+                    <h2>Current reminders</h2>  
                     {reminders.map(reminderObj => 
-                        <div key={reminderObj.id}>
+                        <div key={reminderObj.id} className="single-reminder-container">
                             <Reminder reminder={reminderObj} now={now}/>
                             <button onClick={() => editReminder(reminderObj)}>Edit</button>
                             <button onClick={() => deleteReminder(reminderObj)}>Delete</button>                   
                         </div>
                     )}
+                </section>
+                <section className="new-reminder-form">
+                    <form >  
+                        <h2>New reminder</h2>
+                        <label htmlFor="">What's this reminder for?</label> 
+                        <input 
+                            onChange={handleTask} 
+                            type="text" 
+                            name="task" 
+                        />
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateTimePicker
+                                label="Date and Time picker"
+                                name="dateTime"
+                                inputFormat="EEEE dd MMMM yyyy h:mm bbb"
+                                value={remDateTime}
+                                onChange={handleDateTime}
+                                disablePast
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </LocalizationProvider>
+                        <div className="pin-checkbox-container">
+                            <input 
+                                type="checkbox" 
+                                onChange={handlePinned}
+                                name="pinned"
+                                value="reminder"
+                                className="checkbox"
+                            />
+                            <label htmlFor="pinned">Pin reminder?</label>
+                        </div>
+                        <button onClick={createReminder}>Create</button>
+                    </form> 
                 </section>
             </div>
             <Footer />

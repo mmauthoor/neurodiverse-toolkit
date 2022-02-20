@@ -92,9 +92,11 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         <section>
             <div className="pinboard-container">
                 <div className="todo-list content">
+                    <h2>To do list</h2>
                     todolist here
                 </div>
                 <div className="pinned-notes content">
+                    <h2>Pinned notes</h2>
                     { pinnedNotes.map(pinnedNoteObj => 
                         <div key={pinnedNoteObj.id}>
                             <Note note={pinnedNoteObj}/>
@@ -103,12 +105,21 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                     )}
                 </div>
                 <div className="pinned-reminders content">
-                    { pinnedReminders.map(pinnedRemObj => 
-                        <div key={pinnedRemObj.id}>
-                            <Reminder reminder={pinnedRemObj} now={now}/>
-                            <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
-                        </div>
-                    )}
+                    <h2>Pinned reminders</h2>
+                    { pinnedReminders.length > 0 
+                        ?
+                            <>
+                                { pinnedReminders.map(pinnedRemObj => 
+                                    <div key={pinnedRemObj.id}>
+                                        <Reminder reminder={pinnedRemObj} now={now}/>
+                                        <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
+                                    </div>
+                                )} 
+                            </>
+                        : 
+                             <p>You have no pinned reminders</p>
+                }
+                    
                 </div>
 
             </div>
