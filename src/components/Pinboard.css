@@ -2,5 +2,6 @@
 .pinboard-container {
     background-color: #e1eeed;
     display: flex;
-    height: 100vh;
+    /* need better way of doing height */
+    height: 75vh;
 }

@@ -1,0 +1,21 @@
+
+footer {
+    display: flex;
+    background-color: #51a3a3;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2%;
+}
+
+.footer-title {
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    line-height: 2;
+}
+
+p {
+    margin: 0;
+}

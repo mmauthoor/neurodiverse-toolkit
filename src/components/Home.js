@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import MainNav from "./MainNav";
 import Pinboard from "./Pinboard";
+import Footer from "./Footer";
 
 function Home({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
 
@@ -14,7 +15,8 @@ function Home({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders
                 pinnedReminders={pinnedReminders} 
                 setPinnedReminders={setPinnedReminders}
             />
-            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <Footer />
+           
         </>  
 
     )

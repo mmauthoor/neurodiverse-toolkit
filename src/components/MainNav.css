@@ -2,7 +2,7 @@
 nav {
     display: flex;
     background-color: #51a3a3;
-    height: 10em;
+    height: 17vh;
     padding: 0 15%;
     align-items: center;
 }
@@ -12,7 +12,6 @@ nav ul {
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
-
 }
 
 nav li {
@@ -25,6 +24,7 @@ nav a {
 }
 
 .icon {
+    /* need more responsive width and height */
     width: 5em;
     height: 5em;
     /* line-height: 2em; */
@@ -32,16 +32,15 @@ nav a {
     text-align: center;
     font-size: 1.5em;
     position: relative;
-    /* padding: 2px; */
 }
 
 .icon h2  {
     margin: 0;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    position: absolute;
+    /* position: absolute;
     bottom: 25%;
-    width: 100%;
+    width: 100%; */
 }
 
 svg {
