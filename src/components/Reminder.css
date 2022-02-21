@@ -30,5 +30,17 @@
     margin-top: 10px;
 }
 
+.event-soon {
+    background-color: #EFCA08;
+}
+
+.event-sooner {
+    background-color: #F08700;
+}
+
+.event-soonest {
+    background-color: #D80032 ; 
+}
+
 
 

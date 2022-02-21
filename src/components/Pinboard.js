@@ -46,7 +46,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         reminders.forEach(reminder => {
             let timeFromEvent = getUnixTime(parseISO(reminder.dateTime)) - getUnixTime(now)
         
-            if (timeFromEvent <= reminder.timeSpanFromSetting * 0.1 && reminder.pinned === false) {
+            if ((timeFromEvent <= reminder.timeSpanFromSetting * 0.1 || reminder.timeSpanFromSetting < 86400) && reminder.pinned === false) {
 
                 let newRems = reminders.map(rem => 
                     rem.id === reminder.id 
@@ -88,6 +88,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         setReminders(newRems);
     }
 
+  
     return (
         <section>
             <div className="pinboard-container">

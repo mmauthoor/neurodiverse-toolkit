@@ -3,8 +3,6 @@ import { intervalToDuration } from 'date-fns/esm';
 import { useState, useEffect } from "react";
 
 
-// check that stays in sync when moving between diff pages
-
 function Timer({ now, eventTime }) {
 
     // maybe setting original now here instead of in reminder will allow clock to be more accurate? 
