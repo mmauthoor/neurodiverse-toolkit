@@ -12,4 +12,7 @@
 .note p {
     white-space: pre-wrap;
     word-wrap: break-word;
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
 }

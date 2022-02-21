@@ -61,11 +61,16 @@
 }
 
 .pinned-todo-list {
+    width: 90%;
     background-color: #fff;
     border-radius: 7px;
     padding: 10px 2em;
     margin: 0 10px;
     box-shadow: 0 2px 5px #BEBEBE;
+}
+
+.pinned-todo-list h2 {
+    text-align: center;
 }
 
 @media (max-width: 900px) {

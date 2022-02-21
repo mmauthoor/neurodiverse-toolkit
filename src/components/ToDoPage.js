@@ -40,7 +40,6 @@ function ToDoPage() {
     //     setCurrentNote({...currentNote, title: event.target.value});
     // }
 
-    
 
     const handleListItem = (event) => {
         setListItem(event.target.value);

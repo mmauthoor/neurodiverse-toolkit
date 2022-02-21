@@ -1,0 +1,22 @@
+
+.list {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 0 2em 3em;
+    align-self: flex-start;
+}
+
+.todo-list-ul {
+   
+}
+
+.todo-list-li {
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+}
+
+
+.crossed-out {
+    text-decoration: line-through;
+}

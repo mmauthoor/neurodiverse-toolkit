@@ -1,3 +1,4 @@
+import "./ToDoList.css";
 
 function ToDoList( {list, setList} ) {
 
@@ -8,7 +9,6 @@ function ToDoList( {list, setList} ) {
     const toggleCrossLine = (event) => {
         const item = event.target;
     }
-
     
 
     return (
@@ -16,9 +16,9 @@ function ToDoList( {list, setList} ) {
             <h2>To do</h2>
                 { list.length > 0 
                     ?
-                        <ul>
+                        <ul className="todo-list-ul">
                             {list.map(item => 
-                                <li onClick={toggleCrossLine} key={item.content}>
+                                <li className="todo-list-li" onClick={toggleCrossLine} key={item.content}>
                                     {item.content}
                                     <button onClick={() => handleDeleteItem(item)} className="todo-delete-btn">-</button>
                                 </li>

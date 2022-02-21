@@ -14,13 +14,6 @@
     flex: 1;
 }
 
-.list {
-    background-color: #fff;
-    border-radius: 7px;
-    padding: 0 2em 3em;
-    align-self: flex-start;
-}
-
 .new-item-form, .edit-item-form {
     background-color: #fff;
     padding: 0 2em 3em;
@@ -36,10 +29,3 @@
     text-align: center;
 }
 
-.list li {
-    color: black;
-}
-
-.crossed-out {
-    text-decoration: line-through;
-}
