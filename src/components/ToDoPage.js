@@ -67,7 +67,7 @@ function ToDoPage() {
 
                 { isEditing 
                     ? 
-                        <form className="edit-item-form">
+                        <form className="edit-todo-form">
                             <h2>Edit to do</h2>
                             <label htmlFor="editItem">Task</label>
                             <input
@@ -78,7 +78,7 @@ function ToDoPage() {
                         </form>
                 
                     :
-                    <form className="new-item-form">
+                    <form className="new-todo-form">
                         <h2>Add to do item</h2>
                         <label htmlFor="">Task</label> 
                         <input 
@@ -87,7 +87,7 @@ function ToDoPage() {
                             name="listItem" 
                             // value={val1}
                         />
-                        <button onClick={handleCreateListItem}>+</button>
+                        <button className="add-todo-btn" onClick={handleCreateListItem}>+</button>
                     </form>
                 }
                

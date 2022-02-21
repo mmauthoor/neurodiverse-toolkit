@@ -10,16 +10,31 @@
     gap: 8%;
 }
 
-.list, .new-item-form, .edit-item-form {
+.list, .new-todo-form, .edit-todo-form {
     flex: 1;
 }
 
-.new-item-form, .edit-item-form {
+.new-todo-form, .edit-todo-form {
     background-color: #fff;
     padding: 0 2em 3em;
     text-align: center;
     align-self: flex-start;
     border-radius: 7px;
+}
+
+.new-todo-form label {
+    display: block;
+}
+
+.new-todo-form input {
+    width: 80%;
+    display: inline;
+}
+
+.add-todo-btn {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
 }
 
 .todo-container h2 {
@@ -28,4 +43,20 @@
     line-height: 2;
     text-align: center;
 }
+
+
+@media (max-width: 950px) {
+    .todo-container {
+        flex-direction: column;
+        padding: 2rem 3rem;
+    }
+    .list {
+        align-self: stretch;
+    }
+    .new-todo-form, .edit-todo-form {
+        align-self: stretch;
+        margin: 5% 0;
+    }
+}
+
 
