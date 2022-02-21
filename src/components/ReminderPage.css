@@ -75,6 +75,10 @@ button {
     transform: scale(1);
 }
 
+button p {
+    margin: 0;
+}
+
 button:hover {
     background-color: #22517e;
     transform: scale(1.1) perspective(1px)

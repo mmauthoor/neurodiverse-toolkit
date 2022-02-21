@@ -80,9 +80,24 @@ img {
     nav {
         padding: 5%;
     }
+    .main-nav {
+        padding: 0;
+    }
+}
 
-    /* .icon {
-        width: 2em;
-        height: 2em;
-    } */
+@media (max-width: 500px) {
+    nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .main-nav {
+        padding: 0;
+    }
+    .icon {
+        width: 3em;
+        height: 3em;
+    }
+
 }

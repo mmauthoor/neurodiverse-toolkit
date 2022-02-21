@@ -16,6 +16,15 @@ footer {
     line-height: 2;
 }
 
-p {
+footer p {
     margin: 0;
+}
+
+@media (max-width: 500px) {
+    footer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
 }

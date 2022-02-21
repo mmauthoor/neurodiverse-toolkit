@@ -9,3 +9,10 @@
     font-size: 0.9em;
 }
 
+@media (max-width: 500px) {
+    .notes-icon h2 {
+        font-size: 0.7em;
+        padding-top: 5px;
+    }
+}
+

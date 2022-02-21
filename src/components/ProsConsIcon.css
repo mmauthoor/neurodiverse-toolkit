@@ -9,3 +9,10 @@
     font-size: 0.7em;
     padding-top: 5px;
 }
+
+@media (max-width: 500px) {
+    .proscons-icon h2 {
+        font-size: 0.6em;
+        padding-top: 5px;
+    }
+}
