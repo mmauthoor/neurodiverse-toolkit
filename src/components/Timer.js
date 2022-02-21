@@ -37,14 +37,12 @@ function Timer({ now, eventTime }) {
   
     return (
         <>
-
-            <p>
+            <p className="timer-countdown-p">
                 {unixEndTime < unixNowTime
                     ? "Time's up!" 
-                    : `${formatDuration(timeDiff, {delimiter: ', '})}`
+                    : `${formatDuration(timeDiff, {delimiter: ", "})}`
                 }
             </p>
-        
         </>
     )
 

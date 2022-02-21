@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { format, parseISO, getUnixTime } from 'date-fns';
-
+import { AiFillPushpin } from 'react-icons/ai';
 
 import "./Pinboard.css"
 import Note from "./Note";
@@ -100,7 +100,13 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                     { pinnedNotes.map(pinnedNoteObj => 
                         <div key={pinnedNoteObj.id}>
                             <Note note={pinnedNoteObj}/>
-                            <button onClick={() => handleNoteUnpin(pinnedNoteObj)}>Unpin</button>
+                            <button 
+                                className="unpin-btn" 
+                                onClick={() => handleNoteUnpin(pinnedNoteObj)}
+                            >
+                                <p>Unpin</p>
+                                <AiFillPushpin />
+                            </button>
                         </div>
                     )}
                 </div>
@@ -112,13 +118,19 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                                 { pinnedReminders.map(pinnedRemObj => 
                                     <div key={pinnedRemObj.id} className="single-reminder-container">
                                         <Reminder reminder={pinnedRemObj} now={now}/>
-                                        <button onClick={() => handleRemUnpin(pinnedRemObj)}>Unpin</button>
+                                        <button 
+                                            className="unpin-btn" 
+                                            onClick={() => handleRemUnpin(pinnedRemObj)}
+                                        >
+                                            <p>Unpin</p>
+                                            <AiFillPushpin />
+                                        </button>
                                     </div>
                                 )} 
                             </>
                         : 
                              <p>You have no pinned reminders</p>
-                }
+                    }
                     
                 </div>
 

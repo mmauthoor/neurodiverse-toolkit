@@ -1,6 +1,6 @@
 
 .pinboard-container {
-    padding: 5rem 6rem;
+    padding: 4rem 5rem;
     background-color: #e1eeed;
     display: flex;
     /* need better way of doing height */
@@ -13,6 +13,34 @@
 .content {
     padding: 1%;
     flex: 1;
+}
+
+.unpin-btn {
+    height: 60px;
+    width: 60px;
+    align-self: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #eab880;
+}
+
+.unpin-btn p {
+    font-size: 10.5pt;
+    margin-top: 2px;
+}
+
+.single-reminder-container .unpin-btn {
+    background-color: #e56399;
+}
+
+.unpin-btn:hover {
+    background-color: #22517e;
+    color: #fff;
+}
+
+.unpin-btn svg {
+    margin: 0;
+    font-size: 1.25rem;
 }
 
 @media (max-width: 700px) {

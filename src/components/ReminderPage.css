@@ -95,13 +95,26 @@ button:hover {
     border-radius: 50%;
 }
 
+.edit-btn {
+    background-color: #eab880;
+    color: grey;
+}
+
+.edit-btn:hover {
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #df7373;
+}
+
 .edit-btn svg, .delete-btn svg {
     margin: 0;
     font-size: 2rem;
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 950px) {
     .reminder-container {
         flex-direction: column;
         padding: 2rem 3rem;

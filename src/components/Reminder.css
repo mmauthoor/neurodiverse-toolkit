@@ -1,9 +1,33 @@
 
-.reminder-content {
+.reminder-outer-div {
     background-color: #e56399;
-    border-radius: 20px;
-    padding: 10px 15px;
+    border-radius: 35px;
+    padding: 25px 20px;
     max-width: 500px;
     flex: 3;
     text-align: center;
 }
+
+.reminder-content {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 10px 10px 15px;
+}
+
+.reminder-content h3, .reminder-content p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.rem-datetime-p {
+    color: #22517e;
+    font-weight: 500;
+
+}
+
+.timer-countdown-p {
+    font-size: 11pt;
+    margin-top: 10px;
+}
+
+
+
