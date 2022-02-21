@@ -6,6 +6,7 @@
     max-width: 500px;
     flex: 3;
     text-align: center;
+    box-shadow: 0 5px 5px #BEBEBE;
 }
 
 .reminder-content {

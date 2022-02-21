@@ -8,3 +8,39 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.single-notes-container {
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0;
+    justify-content: center;
+}
+
+.current-notes, .new-note-form, .edit-note-form {
+    flex: 1;
+}
+
+.new-note-form, .edit-note-form {
+    background-color: #fff;
+    padding: 0 2em 3em;
+    text-align: center;
+    align-self: flex-start;
+    border-radius: 7px;
+}
+
+.notes-container {
+    line-height: 1.5;
+    flex: wrap;
+    gap: 8%;
+}
+
+.notes-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    line-height: 2;
+    text-align: center;
+}
+
+textarea {
+    line-height: 1.5;
+}

@@ -15,18 +15,25 @@
 
 .new-reminder-form {
     background-color: #fff;
+    border-radius: 7px;
+
     padding: 0 2em 3em;
     text-align: center;
     align-self: flex-start;
 }
 
-input {
+input, textarea {
     border: 1px solid #dcdcdc;
     border-radius: 7px;
-    line-height: 3.5;
     width: 50%;
     display: block;
-    margin: 1.5em auto;
+    margin: 1em auto 1.7em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11pt;
+}
+
+input {
+    line-height: 3.5;
 }
 
 /* .pin-checkbox-container {
@@ -38,6 +45,10 @@ input {
     width: 20px;
     height: 20px;
     margin: 1.5em;
+}
+
+.checkbox:hover {
+    cursor: pointer;
 }
 
 .reminder-container {
@@ -72,11 +83,11 @@ button:hover {
 .single-reminder-container {
     display: flex;
     flex-direction: row;
-    margin: 1em 0;
+    margin: 2em 0;
 }
 
 .current-reminders {
-    padding: 0 2em;
+    /* padding: 0 2em; */
     width: 70%;
 }
 
@@ -84,6 +95,7 @@ button:hover {
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     line-height: 2;
+    text-align: center;
 }
 
 .edit-btn, .delete-btn {

@@ -1,0 +1,15 @@
+
+.note {
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #BEBEBE;
+    padding: 15px;
+    max-width: 300px;
+    flex: 3;
+    /* margin: 10px; */
+}
+
+.note p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

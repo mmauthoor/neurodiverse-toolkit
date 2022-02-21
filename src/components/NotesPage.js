@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { MdModeEdit } from 'react-icons/md';
+import { AiFillDelete } from 'react-icons/ai';
 
 import SubNav from "./SubNav";
 import Note from "./Note";
@@ -98,13 +100,14 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
             <SubNav name={"Notes"} compStyle={"notes-nav"} />
             <div className="notes-container">  
 
-                <section className="current-notes">  
+                <section className="current-notes">
+                    <h2>Current notes</h2>  
                     {notes.map(noteObj => 
 
-                        <div key={noteObj.id}>
+                        <div key={noteObj.id} className="single-notes-container">
+                             <button className="edit-btn" onClick={() => handleEditNote(noteObj)}><MdModeEdit /></button>
                             <Note note={noteObj}/>
-                            <button onClick={() => handleEditNote(noteObj)}>Edit</button>
-                            <button onClick={() => handleDeleteNote(noteObj)}>Delete</button>
+                            <button className="delete-btn" onClick={() => handleDeleteNote(noteObj)}><AiFillDelete /></button>
                         </div>
                     )}
                 </section>
@@ -112,8 +115,7 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                 { isEditing ? 
                     <form className="edit-note-form">
                         <h2>Edit note</h2>
-                        <label htmlFor="editTitle">Edit title: </label>
-                    
+                        <label htmlFor="editTitle">Title</label>
                         <input
                             name="editTitle"
                             type="text"
@@ -121,13 +123,15 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                             onChange={handleEditTitle}
                         />
 
-                        <label htmlFor="editContent">Edit content: </label>
-                    <textarea
-                        name="editContent"
-                        type="text"
-                        defaultValue={currentNote.content}
-                        onChange={handleEditContent}
-                    >
+                        <label htmlFor="editContent">Content</label>
+                        <textarea
+                            name="editContent"
+                            type="text"
+                            defaultValue={currentNote.content}
+                            onChange={handleEditContent}
+                            cols="30" 
+                            rows="10"
+                        >
                         </textarea>
 
                         <button onClick={handleEditNoteSubmit}>Update</button>
@@ -138,7 +142,7 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
 
                     <form className="new-note-form">  
                         <h2>New note</h2>
-                        <label htmlFor="">Note title</label> 
+                        <label htmlFor="">Title</label> 
                         <input 
                             onChange={handleTitle} 
                             type="text" 
@@ -154,14 +158,17 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                             cols="30" 
                             rows="10">
                         </textarea>
-                        <input 
-                            type="checkbox" 
-                            onChange={handlePinned}
-                            name="pinned"
-                            value="note"
-                        />
-                        <label htmlFor="pinned">Pin this note?</label>
-                        <button onClick={handleCreateNote}>Create note!</button>
+                        <div className="pin-checkbox-container">
+                            <input 
+                                type="checkbox" 
+                                className="checkbox"
+                                onChange={handlePinned}
+                                name="pinned"
+                                value="note"
+                            />   
+                            <label htmlFor="pinned">Pin this note?</label>
+                        </div>
+                        <button onClick={handleCreateNote}>Create</button>
                     </form>    
                 }
             </div>
