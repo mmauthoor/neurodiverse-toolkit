@@ -6,6 +6,14 @@
     align-self: flex-start;
 }
 
+.list-item-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
 .todo-list-ul {
    
 }
@@ -16,6 +24,17 @@
     font-size: 12pt;
 }
 
+.todo-list-li:hover {
+    cursor: pointer;
+}
+
+.delete-todo-btn {
+    margin: 2px;
+    background-color: #df7373;
+    width: 30px;
+    height: 20px;
+    padding: 0;
+}
 
 .crossed-out {
     text-decoration: line-through;

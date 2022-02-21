@@ -5,7 +5,7 @@ import { AiFillPushpin } from 'react-icons/ai';
 import "./Pinboard.css"
 import Note from "./Note";
 import Reminder from "./Reminder";
-import { listClasses } from "@mui/material";
+import ToDoListItem from "./ToDoListItem";
 
 function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
 
@@ -104,7 +104,8 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                         <h2>To do list</h2>
                         <ul className="todo-list-ul">
                             {list.map(item => 
-                                <li className="todo-list-li">{item.content}</li>
+                                <ToDoListItem item={item} list={list} setList={setList}/>
+                                // <li className="todo-list-li">{item.content}</li>
                             )}
                         </ul>
                     </div>

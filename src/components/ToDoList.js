@@ -1,15 +1,10 @@
+import { useState } from "react";
 import "./ToDoList.css";
+import ToDoListItem from "./ToDoListItem";
+
+
 
 function ToDoList( {list, setList} ) {
-
-    const handleDeleteItem = (targetItem) => {
-        setList(list.filter(item => item.id !== targetItem.id));
-    }
-
-    const toggleCrossLine = (event) => {
-        const item = event.target;
-    }
-    
 
     return (
         <section className="list">
@@ -18,17 +13,14 @@ function ToDoList( {list, setList} ) {
                     ?
                         <ul className="todo-list-ul">
                             {list.map(item => 
-                                <li className="todo-list-li" onClick={toggleCrossLine} key={item.content}>
-                                    {item.content}
-                                    <button onClick={() => handleDeleteItem(item)} className="todo-delete-btn">-</button>
-                                </li>
+                                <div className="list-item-div">
+                                    <ToDoListItem item={item} list={list} setList={setList}/>
+                                </div>
                             )}
                         </ul>
                     :
                         <p>Nothing to do!</p>
                 }
-            {/* add ability to edit items. strikethrough on click*/}
-
         </section>
     )
 }
