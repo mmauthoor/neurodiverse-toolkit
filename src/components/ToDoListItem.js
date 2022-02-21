@@ -1,13 +1,10 @@
 import { useState } from "react";
+import ToDoDeleteBtn from "./ToDoDeleteBtn";
 
 
 function ToDoListItem({ item, list, setList }) {
 
     const [crossedOut, setCrossedOut] = useState(false)
-
-    const handleDeleteItem = (targetItem) => {
-        setList(list.filter(item => item.id !== targetItem.id));
-    }
 
     const toggleCrossedOut = (item) => {
         crossedOut === false ? setCrossedOut(true) : setCrossedOut(false)
@@ -22,7 +19,6 @@ function ToDoListItem({ item, list, setList }) {
                 key={item.content}>
                     {item.content}
             </li>
-            <button className="delete-todo-btn" onClick={() => handleDeleteItem(item)} >-</button>
         </>
     )
 }
