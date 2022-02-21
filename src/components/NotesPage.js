@@ -112,64 +112,65 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                     )}
                 </section>
 
-                { isEditing ? 
-                    <form className="edit-note-form">
-                        <h2>Edit note</h2>
-                        <label htmlFor="editTitle">Title</label>
-                        <input
-                            name="editTitle"
-                            type="text"
-                            defaultValue={currentNote.title}
-                            onChange={handleEditTitle}
-                        />
+                { isEditing 
+                    ? 
+                        <form className="edit-note-form">
+                            <h2>Edit note</h2>
+                            <label htmlFor="editTitle">Title</label>
+                            <input
+                                name="editTitle"
+                                type="text"
+                                defaultValue={currentNote.title}
+                                onChange={handleEditTitle}
+                            />
 
-                        <label htmlFor="editContent">Content</label>
-                        <textarea
-                            name="editContent"
-                            type="text"
-                            defaultValue={currentNote.content}
-                            onChange={handleEditContent}
-                            cols="30" 
-                            rows="10"
-                        >
-                        </textarea>
+                            <label htmlFor="editContent">Content</label>
+                            <textarea
+                                name="editContent"
+                                type="text"
+                                defaultValue={currentNote.content}
+                                onChange={handleEditContent}
+                                cols="30" 
+                                rows="10"
+                            >
+                            </textarea>
 
-                        <button onClick={handleEditNoteSubmit}>Update</button>
-                        <button onClick={() => setIsEditing(false)}>Cancel</button>
-                    </form>
+                            <button onClick={handleEditNoteSubmit}>Update</button>
+                            <button onClick={() => setIsEditing(false)}>Cancel</button>
+                        </form>
 
-                : 
+                    : 
 
-                    <form className="new-note-form">  
-                        <h2>New note</h2>
-                        <label htmlFor="">Title</label> 
-                        <input 
-                            onChange={handleTitle} 
-                            type="text" 
-                            name="title" 
-                            // value={val1}
-                        />
-                        <label htmlFor="">Content</label>
-                        <textarea 
-                            name="content" 
-                            onChange={handleContent}
-                            // value={val2}
-                            id="" 
-                            cols="30" 
-                            rows="10">
-                        </textarea>
-                        <div className="pin-checkbox-container">
+                        <form className="new-note-form">  
+                            <h2>New note</h2>
+                            <label htmlFor="">Title</label> 
                             <input 
-                                type="checkbox" 
-                                className="checkbox"
-                                onChange={handlePinned}
-                                name="pinned"
-                                value="note"
-                            />   
-                            <label htmlFor="pinned">Pin this note?</label>
-                        </div>
-                        <button onClick={handleCreateNote}>Create</button>
-                    </form>    
+                                onChange={handleTitle} 
+                                type="text" 
+                                name="title" 
+                                // value={val1}
+                            />
+                            <label htmlFor="">Content</label>
+                            <textarea 
+                                name="content" 
+                                onChange={handleContent}
+                                // value={val2}
+                                id="" 
+                                cols="30" 
+                                rows="10">
+                            </textarea>
+                            <div className="pin-checkbox-container">
+                                <input 
+                                    type="checkbox" 
+                                    className="checkbox"
+                                    onChange={handlePinned}
+                                    name="pinned"
+                                    value="note"
+                                />   
+                                <label htmlFor="pinned">Pin this note?</label>
+                            </div>
+                            <button onClick={handleCreateNote}>Create</button>
+                        </form>    
                 }
             </div>
             <Footer />

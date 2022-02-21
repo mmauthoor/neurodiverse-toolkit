@@ -19,10 +19,13 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.reminder-content p {
+    margin: 7px 0 0;
+}
+
 .rem-datetime-p {
     color: #22517e;
     font-weight: 500;
-
 }
 
 .timer-countdown-p {

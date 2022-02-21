@@ -1,8 +1,6 @@
 import "./Footer.css";
-import { BsFillBrushFill } from 'react-icons/bs';
-
-// import ThemeIcon from "./icons/005-paint-brush.png";
-// import AboutIcon from "./icons/006-question.png";
+// import { GiPaintBrush } from 'react-icons/bs';
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 
 function Footer() {
@@ -17,9 +15,11 @@ function Footer() {
             <div className="footer-text">
                 <p className="footer-title">Neurokit &copy; {year}</p>
                 {/* <p>Icons made by <a href="https://www.freepik.com" title="Freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">flaticon</a></p> */}
+
             </div>
             <div className="about-icon-div">
-                <p>About</p>
+                {/* link to about - either separate page or drawer */}
+                <AiFillQuestionCircle />
             </div>
             
         </footer>

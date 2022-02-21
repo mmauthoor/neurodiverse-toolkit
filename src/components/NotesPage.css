@@ -7,6 +7,9 @@
     min-height: 75vh;
     flex-direction: row;
     justify-content: space-between;
+    line-height: 1.5;
+    flex: wrap;
+    gap: 8%;
 }
 
 .single-note-container {
@@ -31,11 +34,6 @@
     border-radius: 7px;
 }
 
-.notes-container {
-    line-height: 1.5;
-    flex: wrap;
-    gap: 8%;
-}
 
 .notes-container h2 {
     font-family: 'Montserrat', sans-serif;

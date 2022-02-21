@@ -1,0 +1,9 @@
+.proscons-container {
+    padding: 3rem 10em;
+    background-color: #e1eeed;
+    display: flex;
+    min-height: 75vh;
+    flex-direction: row;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+}

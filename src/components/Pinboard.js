@@ -5,8 +5,15 @@ import { AiFillPushpin } from 'react-icons/ai';
 import "./Pinboard.css"
 import Note from "./Note";
 import Reminder from "./Reminder";
+import { listClasses } from "@mui/material";
 
 function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
+
+    const [list, setList] = useState(() => {
+        const savedList = localStorage.getItem("todoList");
+        const initialValue = JSON.parse(savedList);
+        return initialValue || [];
+    });
 
     const [notes, setNotes] = useState(() => {
         const savedNotes = localStorage.getItem("notes");
@@ -93,9 +100,16 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         <section>
             <div className="pinboard-container">
                 <div className="todo-list content">
-                    <h2>To do list</h2>
-                    todolist here
+                    <div className="pinned-todo-list">
+                        <h2>To do list</h2>
+                        <ul className="todo-list-ul">
+                            {list.map(item => 
+                                <li className="todo-list-li">{item.content}</li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
+
                 <div className="pinned-notes content">
                     <h2><AiFillPushpin /> Notes</h2>
                     { pinnedNotes.length > 0 
@@ -119,6 +133,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                     }
                    
                 </div>
+
                 <div className="pinned-reminders content">
                     <h2><AiFillPushpin /> Reminders</h2>
                     { pinnedReminders.length > 0 

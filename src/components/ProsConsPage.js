@@ -1,20 +1,28 @@
 import SubNav from "./SubNav";
+import Footer from "./Footer";
+
+import "./ProsConsPage.css"
 
 function ProsConsPage() {
+
+    
 
     return (
         <>
             <SubNav name={"Pros & cons"} compStyle={"proscons-nav"} />
-            <section>
-                {/* add new todo item. */}
+            <div className="proscons-container">  
 
-            </section>
-            <section>
-                {/* map out. if nothing, have text: nothing to do, yay! */}
-                {/* add ability to edit/delete items. delete on check*/}
+                <section>
+                <p>Coming soon!</p>
+                {/* this section will have current pros and cons lists */}
 
-            </section>
-        
+                </section>
+                <section>
+                    {/* new pros and cons list */}
+
+                </section>
+            </div>
+            <Footer />
         
         </>
 

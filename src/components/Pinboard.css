@@ -1,9 +1,9 @@
 
 .pinboard-container {
-    padding: 4rem 5rem;
+    /* padding: 2rem 5rem; */
+    padding: 2% 3%;
     background-color: #e1eeed;
     display: flex;
-    /* need better way of doing height */
     min-height: 75vh;
     flex-direction: row;
     justify-content: space-between;
@@ -58,6 +58,14 @@
     margin: 0;
     font-size: 1.25rem;
     color: #fff;
+}
+
+.pinned-todo-list {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 10px 2em;
+    margin: 0 10px;
+    box-shadow: 0 2px 5px #BEBEBE;
 }
 
 @media (max-width: 900px) {

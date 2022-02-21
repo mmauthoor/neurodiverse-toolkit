@@ -1,0 +1,45 @@
+.todo-container {
+    padding: 3rem 10em;
+    background-color: #e1eeed;
+    display: flex;
+    min-height: 75vh;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 1.5;
+    flex: wrap;
+    gap: 8%;
+}
+
+.list, .new-item-form, .edit-item-form {
+    flex: 1;
+}
+
+.list {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 0 2em 3em;
+    align-self: flex-start;
+}
+
+.new-item-form, .edit-item-form {
+    background-color: #fff;
+    padding: 0 2em 3em;
+    text-align: center;
+    align-self: flex-start;
+    border-radius: 7px;
+}
+
+.todo-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    line-height: 2;
+    text-align: center;
+}
+
+.list li {
+    color: black;
+}
+
+.crossed-out {
+    text-decoration: line-through;
+}
