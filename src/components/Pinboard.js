@@ -102,12 +102,17 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                 <div className="todo-list content">
                     <div className="pinned-todo-list">
                         <h2>To do list</h2>
-                        <ul className="todo-list-ul">
-                            {list.map(item => 
-                                <ToDoListItem item={item} list={list} setList={setList}/>
-                                // <li className="todo-list-li">{item.content}</li>
-                            )}
-                        </ul>
+                        {list.length > 0
+                            ?
+                                <ul className="todo-list-ul">
+                                    {list.map(item => 
+                                        <ToDoListItem item={item} list={list} setList={setList}/>
+                                    )}
+                                </ul>
+                        
+                            :
+                                <p>Nothing to do!</p>
+                        }
                     </div>
                 </div>
 

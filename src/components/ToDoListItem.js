@@ -1,10 +1,8 @@
 import { useState } from "react";
-import ToDoDeleteBtn from "./ToDoDeleteBtn";
 
+function ToDoListItem({ item }) {
 
-function ToDoListItem({ item, list, setList }) {
-
-    const [crossedOut, setCrossedOut] = useState(false)
+    const [crossedOut, setCrossedOut] = useState(false);
 
     const toggleCrossedOut = (item) => {
         crossedOut === false ? setCrossedOut(true) : setCrossedOut(false)

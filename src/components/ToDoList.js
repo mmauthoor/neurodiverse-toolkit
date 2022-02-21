@@ -19,7 +19,7 @@ function ToDoList( {list, setList} ) {
                         <ul className="todo-list-ul">
                             {list.map(item => 
                                 <div className="list-item-div">
-                                    <ToDoListItem item={item} list={list} setList={setList}/>
+                                    <ToDoListItem item={item}/>
                                     <ToDoDeleteBtn item={item} handleDeleteItem={handleDeleteItem}/>
 
                                 </div>
