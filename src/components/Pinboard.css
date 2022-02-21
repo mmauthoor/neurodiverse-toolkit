@@ -10,6 +10,17 @@
     flex-wrap: wrap;
 }
 
+.pinboard-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22pt;
+}
+
+.pinboard-container svg {
+    margin: 0;
+    font-size: 2rem;
+    color: #51a3a3;
+}
+
 .content {
     padding: 1%;
     flex: 1;
@@ -27,10 +38,15 @@
 .unpin-btn p {
     font-size: 10.5pt;
     margin-top: 2px;
+    font-weight: bold;
 }
 
 .single-reminder-container .unpin-btn {
     background-color: #e56399;
+}
+
+.single-note-container .unpin-btn {
+    background-color: #a1a9fe;
 }
 
 .unpin-btn:hover {
@@ -41,9 +57,10 @@
 .unpin-btn svg {
     margin: 0;
     font-size: 1.25rem;
+    color: #fff;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     .pinboard-container {
         flex-direction: column;
     }

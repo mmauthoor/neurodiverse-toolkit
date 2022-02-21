@@ -1,15 +1,15 @@
 import SubNav from "./SubNav";
 
-function ToDoPage() {
+function ProsConsPage() {
 
     return (
         <>
-            <SubNav name={"To do"} compStyle={"todo-nav"} />
+            <SubNav name={"Pros & cons"} compStyle={"proscons-nav"} />
             <section>
                 {/* add new todo item. */}
 
             </section>
-            <section className="current-todos">
+            <section>
                 {/* map out. if nothing, have text: nothing to do, yay! */}
                 {/* add ability to edit/delete items. delete on check*/}
 
@@ -21,4 +21,4 @@ function ToDoPage() {
     )
 }
 
-export default ToDoPage;
+export default ProsConsPage;

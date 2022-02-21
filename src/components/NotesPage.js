@@ -104,7 +104,7 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                     <h2>Current notes</h2>  
                     {notes.map(noteObj => 
 
-                        <div key={noteObj.id} className="single-notes-container">
+                        <div key={noteObj.id} className="single-note-container">
                              <button className="edit-btn" onClick={() => handleEditNote(noteObj)}><MdModeEdit /></button>
                             <Note note={noteObj}/>
                             <button className="delete-btn" onClick={() => handleDeleteNote(noteObj)}><AiFillDelete /></button>

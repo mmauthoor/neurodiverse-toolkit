@@ -96,22 +96,30 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                     todolist here
                 </div>
                 <div className="pinned-notes content">
-                    <h2>Pinned notes</h2>
-                    { pinnedNotes.map(pinnedNoteObj => 
-                        <div key={pinnedNoteObj.id}>
-                            <Note note={pinnedNoteObj}/>
-                            <button 
-                                className="unpin-btn" 
-                                onClick={() => handleNoteUnpin(pinnedNoteObj)}
-                            >
-                                <p>Unpin</p>
-                                <AiFillPushpin />
-                            </button>
-                        </div>
-                    )}
+                    <h2><AiFillPushpin /> Notes</h2>
+                    { pinnedNotes.length > 0 
+                        ?
+                            <>
+                                { pinnedNotes.map(pinnedNoteObj => 
+                                    <div key={pinnedNoteObj.id} className="single-note-container">
+                                        <Note note={pinnedNoteObj}/>
+                                        <button 
+                                            className="unpin-btn" 
+                                            onClick={() => handleNoteUnpin(pinnedNoteObj)}
+                                        >
+                                            <p>Unpin</p>
+                                            <AiFillPushpin />
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        : 
+                            <p>No pinned notes</p>                    
+                    }
+                   
                 </div>
                 <div className="pinned-reminders content">
-                    <h2>Pinned reminders</h2>
+                    <h2><AiFillPushpin /> Reminders</h2>
                     { pinnedReminders.length > 0 
                         ?
                             <>

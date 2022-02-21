@@ -6,6 +6,7 @@ import Home from './components/Home';
 import ReminderPage from './components/ReminderPage';
 import NotesPage from './components/NotesPage';
 import ToDoPage from './components/ToDoPage';
+import ProsConsPage from './components/ProsConsPage';
 
 function App() {
 
@@ -44,6 +45,9 @@ function App() {
         }/>
         <Route path="/todo" element={
           <ToDoPage />
+        }/>
+        <Route path="/proscons" element={
+          <ProsConsPage />
         }/>
         <Route path="/notes" element={
           <NotesPage pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>

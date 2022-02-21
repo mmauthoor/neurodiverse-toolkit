@@ -9,10 +9,13 @@
     justify-content: space-between;
 }
 
-.single-notes-container {
+.single-note-container {
     display: flex;
     flex-direction: row;
     margin: 2em 0;
+}
+
+.notes-container .single-note-container {
     justify-content: center;
 }
 
@@ -43,4 +46,17 @@
 
 textarea {
     line-height: 1.5;
+}
+
+@media (max-width: 950px) {
+    .notes-container {
+        flex-direction: column;
+        padding: 2rem 3rem;
+    }
+    .current-notes {
+        align-self: stretch;
+    }
+    .new-note-form, .edit-note-form {
+        align-self: stretch;
+    }
 }
