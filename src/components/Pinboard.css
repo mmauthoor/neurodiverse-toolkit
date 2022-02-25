@@ -18,7 +18,14 @@
 .pinboard-container svg {
     margin: 0;
     font-size: 2rem;
-    color: #51a3a3;
+}
+
+.pinned-notes svg {
+    color: #a1a9fe;
+}
+
+.pinned-reminders svg {
+    color: #e56399;
 }
 
 .content {
