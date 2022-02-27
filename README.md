@@ -4,6 +4,7 @@
 The Neurokit is designed to be a neurodivergent-friendly organisational tool to help those with ADHD and/or autism with time management, planning and general executive functioning throughout the day. Many neurodivergent people struggle with remembering information and actioning tasks using more traditional methods like sticky notes, calendar reminders and even phone alarms. I was inspired to create the Neurokit because my partner, who has ADHD, had to use multiple calendar, note and alarm apps to support his executive functions. Having to use multiple apps was inconvenient and presents more barriers to enacting tasks. I wanted neurodivergent people to have access to a single app that helps them with all aspects of their daily planning and had a clean, neurodiverse-friendly design. 
 
 The Neurokit is a fully front-end React app. As a prototype, it stores and draws user data from local storage. Ultimately it will have a back-end connected to a SQL database and login functionality to allow persistent user data across different browsers. 
+Try the app [here](https://theneurokit.herokuapp.com/).
 
 ### Current features
 - Users can set reminders for events or tasks (including time and date and a reminder title)
@@ -76,3 +77,4 @@ The design is simple but vibrant, and uses colour coding of the different featur
 - Icons from React Icons and Freepix
 
 ## App Demo 
+[Try the Neurokit here](https://theneurokit.herokuapp.com/)
