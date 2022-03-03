@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { format, parseISO, getUnixTime } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 import { MdModeEdit } from 'react-icons/md';
-import { AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiFillPushpin } from 'react-icons/ai';
 
 import SubNav from "./SubNav";
 import Reminder from "./Reminder";
@@ -90,14 +90,22 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
         setIsPinned(event.target.checked);
     }
 
-    // currently not doing anything until we have pin button for pre-existing reminders
     const handlePinReminder = (targetReminder) => {
-            let newRems = reminders.map(rem => 
-                rem.id === targetReminder.id 
-                ? {...rem, pinned: true} 
-                : rem
-            )
-            setReminders(newRems);
+        let newRems = reminders.map(rem => 
+            rem.id === targetReminder.id 
+            ? {...rem, pinned: true} 
+            : rem
+        )
+        setReminders(newRems);
+    }
+
+    const handleUnpinReminder = (targetReminder) => {
+        let newRems = reminders.map(rem => 
+            rem.id === targetReminder.id 
+            ? {...rem, pinned: false} 
+            : rem
+        )
+        setReminders(newRems);
     }
 
     return (
@@ -110,7 +118,17 @@ function ReminderPage({ pinnedReminders, setPinnedReminders }) {
                     <h2>Current reminders</h2>  
                     {reminders.map(reminderObj => 
                         <div key={reminderObj.id} className="single-reminder-container">
-                            <button className="edit-btn" onClick={() => editReminder(reminderObj)}><MdModeEdit /></button>
+                            <div className="btns-container">
+                                <button className="edit-btn" onClick={() => editReminder(reminderObj)}><MdModeEdit /></button>
+                                <button 
+                                    className={reminderObj.pinned ? "pinned pin-btn" : "pin-btn"} 
+                                    onClick={ reminderObj.pinned 
+                                        ? () => handleUnpinReminder(reminderObj) 
+                                        : () => handlePinReminder(reminderObj)}>
+                                            { reminderObj.pinned ? "Unpin" : "Pin" }<AiFillPushpin /> 
+                                </button>
+                            </div>
+                           
                             <Reminder reminder={reminderObj} now={now}/>
                             <button className="delete-btn" onClick={() => deleteReminder(reminderObj)}><AiFillDelete /></button>                   
                         </div>

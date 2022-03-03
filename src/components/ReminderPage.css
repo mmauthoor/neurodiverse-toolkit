@@ -102,8 +102,14 @@ button:hover {
     text-align: center;
 }
 
-.edit-btn, .delete-btn {
-    /* flex: 1; */
+.btns-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+
+.edit-btn, .delete-btn, .pin-btn {
     height: 50px;
     width: 50px;
     align-self: center;
@@ -120,13 +126,31 @@ button:hover {
     color: #fff;
 }
 
+.pin-btn {
+    font-size: 9.5pt;
+    padding: 10px 7px;
+}
+
 .delete-btn {
     background-color: #df7373;
+}
+
+.pin-btn svg {
+    margin: 0;
+    font-size: 1rem;
 }
 
 .edit-btn svg, .delete-btn svg {
     margin: 0;
     font-size: 2rem;
+}
+
+.pinned {
+    background-color: #22517e;
+}
+
+.pinned:hover {
+    background-color: #51a3a3;
 }
 
 

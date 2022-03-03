@@ -69,7 +69,8 @@ The design is simple but vibrant, and uses colour coding of the different featur
 - About page with user info about the app
 - Add customisation options, e.g. different colour themes, different fonts for people with dyslexia, etc.
 - Add general list-making ability, and/or ability to add multiple To Do lists
-- Improve component breakdowns and folder organisation
+- Add confirm delete prompt to avoid accidental deletion of reminders and notes
+- Improve component breakdown and folder organisation to minimise repetition of reused functions and components
 - Refactor css to minimise repetition
 
 ## Special thanks & credits

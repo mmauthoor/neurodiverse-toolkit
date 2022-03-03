@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { MdModeEdit } from 'react-icons/md';
-import { AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiFillPushpin } from 'react-icons/ai';
 
 import SubNav from "./SubNav";
 import Note from "./Note";
@@ -90,9 +90,26 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
         setCurrentNote({...currentNote, content: event.target.value});
     }
 
-
     const handleDeleteNote = (targetNote) => {
         setNotes(notes.filter(note => note !== targetNote));
+    }
+
+    const handlePinNote = (targetNote) => {
+        let newNotes = notes.map(note => 
+            note.id === targetNote.id 
+            ? {...note, pinned: true} 
+            : note
+        )
+        setNotes(newNotes);
+    }
+
+    const handleUnpinNote = (targetNote) => {
+        let newNotes = notes.map(note => 
+            note.id === targetNote.id 
+            ? {...note, pinned: false} 
+            : note 
+        )
+        setNotes(newNotes);
     }
 
     return (
@@ -105,7 +122,17 @@ function NotesPage( {pinnedNotes, setPinnedNotes} ) {
                     {notes.map(noteObj => 
 
                         <div key={noteObj.id} className="single-note-container">
-                             <button className="edit-btn" onClick={() => handleEditNote(noteObj)}><MdModeEdit /></button>
+                            <div className="btns-container">
+                                <button className="edit-btn" onClick={() => handleEditNote(noteObj)}><MdModeEdit /></button>
+                                <button 
+                                    className={noteObj.pinned ? "pinned pin-btn" : "pin-btn"}   
+                                    onClick={ noteObj.pinned 
+                                    ? () => handleUnpinNote(noteObj) 
+                                    : () => handlePinNote(noteObj)}>
+                                        { noteObj.pinned ? "Unpin" : "Pin" }
+                                        <AiFillPushpin /> 
+                                </button>
+                            </div>
                             <Note note={noteObj}/>
                             <button className="delete-btn" onClick={() => handleDeleteNote(noteObj)}><AiFillDelete /></button>
                         </div>
