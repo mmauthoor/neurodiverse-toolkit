@@ -37,6 +37,14 @@ Third-party library components, including:
 - Fonts from Google Fonts
 
 ## Wireframes
+Desktop view:
+![](https://i.imgur.com/X5G7I2n.png)
+![](https://i.imgur.com/WiUke5A.png)
+![](https://i.imgur.com/wMOP5HX.png)
+
+Mobile view:
+![](https://i.imgur.com/nKLRiWJ.png)
+![](https://i.imgur.com/wIKGjtO.png)
 
 
 ## Approach 
