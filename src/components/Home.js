@@ -1,10 +1,9 @@
-import { useState } from "react";
 
 import MainNav from "./MainNav";
 import Pinboard from "./Pinboard";
 import Footer from "./Footer";
 
-function Home({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
+function Home({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders, crossedToDos, setCrossedToDos }) {
 
     return (
         <>
@@ -14,6 +13,8 @@ function Home({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders
                 setPinnedNotes={setPinnedNotes}
                 pinnedReminders={pinnedReminders} 
                 setPinnedReminders={setPinnedReminders}
+                crossedToDos={crossedToDos}
+                setCrossedToDos={setCrossedToDos}
             />
             <Footer />
            

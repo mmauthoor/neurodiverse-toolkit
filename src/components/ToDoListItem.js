@@ -1,21 +1,19 @@
-import { useState } from "react";
 
-function ToDoListItem({ item }) {
+function ToDoListItem({ item, handleCrossOut, handleUncross }) {
 
-    const [crossedOut, setCrossedOut] = useState(false);
+    const crossedOut = item.crossedOut; 
 
-    const toggleCrossedOut = (item) => {
-        crossedOut === false ? setCrossedOut(true) : setCrossedOut(false)
+    const handleClick = (item) => {
+        crossedOut ? handleUncross(item) : handleCrossOut(item);
     }
-
 
     return (
         <>
             <li 
                 className={ `${crossedOut ? "crossed-out" : "" } todo-list-li`} 
-                onClick={() => toggleCrossedOut(item)} 
-                key={item.content}>
-                    {item.content}
+                onClick={() => handleClick(item)} 
+            >
+                {item.content}
             </li>
         </>
     )
