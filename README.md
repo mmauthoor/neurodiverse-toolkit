@@ -63,22 +63,19 @@ The design is simple but vibrant, and uses colour coding of the different featur
 
 ### Bugs and issues
 - Not yet fully responsive - responsiveness for small screens (particularly mobiles) needs more work
-- Currently users are not able to pin notes or reminders after creation
 - Inputs should automatically clear after editing/creating notes and reminders 
-- Crossed out To Do list items should be saved to local storage so they can transfer accurately/consistently between the home dashboard and To Do components 
 - More visual indication required upon successful creation of notes or reminders, e.g. add a message under the new Note input when a note is successfully created
 
 ## Areas of future work
-- Ability to pin reminders/notes after creation
 - Optional sounds to reminder timers 
 - Animations for imminent reminder events - e.g. jiggling or shaking animations to attract user attention even more
 - Add full CRUD functionality to all features, e.g. ability to edit reminders and To Do list items
 - Pros and Cons feature (where users can create new pros and cons lists to weigh a decision, designed to help with decision making)
-- About page with user info about the app
+- About page with info about the app
 - Add customisation options, e.g. different colour themes, different fonts for people with dyslexia, etc.
 - Add general list-making ability, and/or ability to add multiple To Do lists
-- Add confirm delete prompt to avoid accidental deletion of reminders and notes
-- Improve component breakdown and folder organisation to minimise repetition of reused functions and components
+- Add 'confirm delete' prompt to avoid accidental deletion of reminders and notes
+- Improve component breakdown and folder organisation to minimise repetition of reused functions and components, e.g. useContext instead of props drilling
 - Refactor css to minimise repetition
 
 ## Special thanks & credits
