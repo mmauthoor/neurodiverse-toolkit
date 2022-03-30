@@ -4,8 +4,7 @@ import ToDoListItem from "./ToDoListItem";
 import ToDoDeleteBtn from "./ToDoDeleteBtn";
 
 
-
-function ToDoList( {list, setList} ) {
+function ToDoList( {list, setList, handleCrossOut, handleUncross } ) {
 
     const handleDeleteItem = (targetItem) => {
         setList(list.filter(item => item.id !== targetItem.id));
@@ -18,10 +17,13 @@ function ToDoList( {list, setList} ) {
                     ?
                         <ul className="todo-list-ul">
                             {list.map(item => 
-                                <div className="list-item-div">
-                                    <ToDoListItem item={item}/>
+                                <div key={item.id} className="list-item-div">
+                                    <ToDoListItem 
+                                        item={item} 
+                                        handleCrossOut={handleCrossOut} 
+                                        handleUncross={handleUncross}
+                                    />
                                     <ToDoDeleteBtn item={item} handleDeleteItem={handleDeleteItem}/>
-
                                 </div>
                             )}
                         </ul>

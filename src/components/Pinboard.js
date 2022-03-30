@@ -7,7 +7,7 @@ import Note from "./Note";
 import Reminder from "./Reminder";
 import ToDoListItem from "./ToDoListItem";
 
-function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders }) {
+function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedReminders, crossedToDos, setCrossedToDos }) {
 
     const [list, setList] = useState(() => {
         const savedList = localStorage.getItem("todoList");
@@ -76,6 +76,17 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         localStorage.setItem("pinnedReminders", JSON.stringify(pinnedReminders));
     }, [pinnedReminders])
 
+    useEffect(() => {
+        localStorage.setItem("todoList", JSON.stringify(list)); 
+        
+        let newCrossedToDos = list.filter(item => item.crossedOut === true);
+        setCrossedToDos(newCrossedToDos);
+    }, [list]);
+
+    useEffect(() => {
+        localStorage.setItem("crossedToDos", JSON.stringify(crossedToDos));
+    }, [crossedToDos])
+
 
     const handleNoteUnpin = (targetNote) => {
         let newNotes = notes.map(note => 
@@ -95,6 +106,24 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
         setReminders(newRems);
     }
 
+    const handleCrossOut = (targetItem) => {
+        let newList = list.map(item => 
+            item.id === targetItem.id 
+            ? {...item, crossedOut: true} 
+            : item
+        )
+        setList(newList);
+    }
+
+    const handleUncross = (targetItem) => {
+        let newList = list.map(item => 
+            item.id === targetItem.id 
+            ? {...item, crossedOut: false} 
+            : item 
+        )
+        setList(newList);
+    }
+
   
     return (
         <section>
@@ -106,7 +135,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                             ?
                                 <ul className="todo-list-ul">
                                     {list.map(item => 
-                                        <ToDoListItem item={item} list={list} setList={setList}/>
+                                        <ToDoListItem key={item.id} item={item} handleCrossOut={handleCrossOut} handleUncross={handleUncross}/>
                                     )}
                                 </ul>
                         
@@ -135,7 +164,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                                 )}
                             </>
                         : 
-                            <p>No pinned notes</p>                    
+                            <p>You have no pinned notes.</p>                    
                     }
                    
                 </div>
@@ -159,7 +188,7 @@ function Pinboard({ pinnedNotes, setPinnedNotes, pinnedReminders, setPinnedRemin
                                 )} 
                             </>
                         : 
-                             <p>You have no pinned reminders</p>
+                             <p>You have no pinned reminders.</p>
                     }
                     
                 </div>

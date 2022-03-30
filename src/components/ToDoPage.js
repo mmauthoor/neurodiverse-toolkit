@@ -7,7 +7,7 @@ import ToDoList from "./ToDoList";
 import Footer from "./Footer";
 import "./ToDoPage.css"
 
-function ToDoPage() {
+function ToDoPage({ crossedToDos, setCrossedToDos }) {
 
     const [listItem, setListItem] = useState("");
     const [list, setList] = useState(() => {
@@ -19,8 +19,15 @@ function ToDoPage() {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem("todoList", JSON.stringify(list));     
+        localStorage.setItem("todoList", JSON.stringify(list)); 
+        
+        let newCrossedToDos = list.filter(item => item.crossedOut === true);
+        setCrossedToDos(newCrossedToDos);
     }, [list]);
+
+    useEffect(() => {
+        localStorage.setItem("crossedToDos", JSON.stringify(crossedToDos));
+    }, [crossedToDos])
  
 
      // const handleEditNote = (targetNote) => {
@@ -43,7 +50,6 @@ function ToDoPage() {
 
     const handleListItem = (event) => {
         setListItem(event.target.value);
-        console.log(list)
     }
 
     const handleCreateListItem = (event) => {
@@ -52,10 +58,29 @@ function ToDoPage() {
         setList(prevState => {
             const newState = [...prevState, {
                 content: listItem,
-                id: uuidv4()
+                id: uuidv4(), 
+                crossedOut: false
             }];
             return newState;
         });
+    }
+
+    const handleCrossOut = (targetItem) => {
+        let newList = list.map(item => 
+            item.id === targetItem.id 
+            ? {...item, crossedOut: true} 
+            : item
+        )
+        setList(newList);
+    }
+
+    const handleUncross = (targetItem) => {
+        let newList = list.map(item => 
+            item.id === targetItem.id 
+            ? {...item, crossedOut: false} 
+            : item 
+        )
+        setList(newList);
     }
    
 
@@ -63,7 +88,12 @@ function ToDoPage() {
         <>
             <SubNav name={"To do"} compStyle={"todo-nav"} />
             <div className="todo-container">
-                <ToDoList list={list} setList={setList}/>
+                <ToDoList 
+                    list={list} 
+                    setList={setList} 
+                    handleCrossOut={handleCrossOut} 
+                    handleUncross={handleUncross}
+                />
 
                 { isEditing 
                     ? 

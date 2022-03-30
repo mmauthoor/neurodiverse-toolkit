@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from "react";
-import {Routes, Route, Link} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import ReminderPage from './components/ReminderPage';
@@ -20,16 +20,16 @@ function App() {
     const savedRems = localStorage.getItem("pinnedReminders");
     const initialValue = JSON.parse(savedRems);
     return initialValue || [];
-  })
+  });
 
+  const [crossedToDos, setCrossedToDos] = useState(() => {
+    const savedCrossedToDos = localStorage.getItem("crossedToDos");
+    const initialValue = JSON.parse(savedCrossedToDos);
+    return initialValue || [];
+  });
 
   return (
     <div className="App">
-      {/* dashboard contacts button thingy for to do, alarm, etc */}
-      {/* pinned stuff goes here */}
-      {/* <Calendar /> */}
-      {/* ideally renders date, but clicking on it opens up full calendar interface */}
-
 
       <Routes>
         <Route path="/" element={
@@ -38,13 +38,15 @@ function App() {
             setPinnedNotes={setPinnedNotes}
             pinnedReminders={pinnedReminders} 
             setPinnedReminders={setPinnedReminders}
+            crossedToDos={crossedToDos}
+            setCrossedToDos={setCrossedToDos}
           />
         }/>
         <Route path="/reminders" element={
           <ReminderPage pinnedReminders={pinnedReminders} setPinnedReminders={setPinnedReminders}/>
         }/>
         <Route path="/todo" element={
-          <ToDoPage />
+          <ToDoPage crossedToDos={crossedToDos} setCrossedToDos={setCrossedToDos}/>
         }/>
         <Route path="/proscons" element={
           <ProsConsPage />
@@ -52,8 +54,6 @@ function App() {
         <Route path="/notes" element={
           <NotesPage pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
         }/>
-
-      
       </Routes>
     </div>
 
