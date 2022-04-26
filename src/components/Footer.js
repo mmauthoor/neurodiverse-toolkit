@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import "./Footer.css";
 // import { GiPaintBrush } from 'react-icons/bs';
 import { AiFillQuestionCircle } from "react-icons/ai";
@@ -19,7 +21,7 @@ function Footer() {
             </div>
             <div className="about-icon-div">
                 {/* link to about - either separate page or drawer */}
-                <AiFillQuestionCircle />
+                <Link to="/about"><AiFillQuestionCircle /></Link>
             </div>
             
         </footer>

@@ -54,11 +54,15 @@
     background-color: #a1a9fe;
 }
 
-.reminder-nav, .todo-nav, .proscons-nav, .notes-nav {
+.about-nav {
+    background-color: #489292;
+}
+
+.reminder-nav, .todo-nav, .proscons-nav, .notes-nav, .about-nav {
     padding-left: 10em;
 }
 
-.reminder-nav h1, .todo-nav h1, .proscons-nav h1, .notes-nav h1 {
+.reminder-nav h1, .todo-nav h1, .proscons-nav h1, .notes-nav h1, .about-nav h1 {
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
