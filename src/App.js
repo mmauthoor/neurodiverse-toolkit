@@ -7,6 +7,7 @@ import ReminderPage from './components/ReminderPage';
 import NotesPage from './components/NotesPage';
 import ToDoPage from './components/ToDoPage';
 import ProsConsPage from './components/ProsConsPage';
+import AboutPage from './components/AboutPage';
 
 function App() {
 
@@ -49,10 +50,13 @@ function App() {
           <ToDoPage crossedToDos={crossedToDos} setCrossedToDos={setCrossedToDos}/>
         }/>
         <Route path="/proscons" element={
-          <ProsConsPage />
+          <ProsConsPage/>
         }/>
         <Route path="/notes" element={
           <NotesPage pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
+        }/>
+        <Route path="/about" element={
+          <AboutPage/>
         }/>
       </Routes>
     </div>

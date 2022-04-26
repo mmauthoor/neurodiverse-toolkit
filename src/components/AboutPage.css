@@ -1,0 +1,9 @@
+.about-content {
+    padding: 2% 3%;
+    background-color: #e1eeed;
+    display: flex;
+    min-height: 75vh;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
